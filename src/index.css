@@ -1,0 +1,3603 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+     :root {
+        --background: 210 50% 97%;
+        --foreground: 220 20% 12%;
+        --card: 0 0% 100%;
+        --card-foreground: 220 20% 12%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 220 20% 12%;
+        --primary: 210 90% 35%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 210 40% 93%;
+        --secondary-foreground: 220 20% 12%;
+        --muted: 210 30% 88%;
+        --muted-foreground: 215 15% 40%;
+        --accent: 25 100% 55%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 210 25% 85%;
+        --input: 210 25% 88%;
+        --ring: 210 90% 35%;
+        --radius: 0.75rem;
+        --sidebar-background: 210 50% 97%;
+        --sidebar-foreground: 220 20% 12%;
+        --sidebar-primary: 240 5.9% 10%;
+        --sidebar-primary-foreground: 0 0% 98%;
+        --sidebar-accent: 210 30% 88%;
+        --sidebar-accent-foreground: 220 20% 12%;
+        --sidebar-border: 220 13% 85%;
+        --sidebar-ring: 217.2 91.2% 59.8%;
+        --extension: 25 100% 55%;
+        --card-border-left: 210 90% 35%;
+        --header-gradient-from: 138 72% 42%;
+        --header-gradient-to: 188 72% 35%;
+    }
+    .dark {
+        --background: 220 20% 8%;
+        --foreground: 210 40% 95%;
+        --card: 220 20% 12%;
+        --card-foreground: 210 40% 95%;
+        --popover: 220 20% 12%;
+        --popover-foreground: 210 40% 95%;
+        --primary: 210 90% 50%;
+        --primary-foreground: 220 20% 8%;
+        --secondary: 220 20% 18%;
+        --secondary-foreground: 210 40% 95%;
+        --muted: 220 20% 18%;
+        --muted-foreground: 215 20% 60%;
+        --accent: 25 100% 55%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 62% 30%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 220 20% 20%;
+        --input: 220 20% 20%;
+        --ring: 210 90% 50%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
+        font-family: 'Inter', sans-serif;
+        min-height: 100vh;
+        background-attachment: fixed;
+    }
+    /* =====================================================
+       6 color themes — each defines BACKGROUND gradient AND
+       CONTENT (card + text) tints so the whole UI feels
+       coherent, not just the page background.
+       ===================================================== */
+    /* ---------- NAVY (dark blue) ---------- */
+    html.theme-navy {
+        --primary: 220 90% 35%;
+        --primary-foreground: 0 0% 100%;
+        --border: 220 20% 80%;
+        --card: 215 35% 98%;
+        --secondary: 220 40% 96%;
+        --muted: 220 30% 95%;
+        --input: 220 25% 90%;
+        --ring: 220 90% 35%;
+    }
+    html.theme-navy body {
+        background: linear-gradient(135deg, hsl(220 30% 92%) 0%, hsl(210 35% 90%) 50%, hsl(230 30% 92%) 100%);
+    }
+    html.theme-navy .bg-white {
+        background-color: hsl(215 35% 98%) !important;
+    }
+    html.theme-navy .text-slate-900 {
+        color: hsl(215 40% 18%) !important;
+    }
+    html.theme-navy .text-slate-600,
+    html.theme-navy .text-slate-700 {
+        color: hsl(215 25% 32%) !important;
+    }
+    html.theme-navy.dark {
+        --primary: 220 90% 50%;
+        --primary-foreground: 220 20% 8%;
+        --border: 220 20% 20%;
+        --card: 215 35% 14%;
+        --secondary: 220 20% 18%;
+        --muted: 220 20% 18%;
+        --input: 220 20% 20%;
+        --ring: 220 90% 50%;
+    }
+    html.theme-navy.dark body {
+        background: linear-gradient(135deg, hsl(220 40% 8%) 0%, hsl(210 45% 10%) 50%, hsl(230 40% 9%) 100%);
+    }
+    html.theme-navy.dark .dark\:bg-slate-800 {
+        background-color: hsl(215 35% 14%) !important;
+    }
+    html.theme-navy.dark .dark\:bg-slate-700 {
+        background-color: hsl(215 30% 18%) !important;
+    }
+    html.theme-navy.dark .dark\:text-slate-50 {
+        color: hsl(215 95% 95%) !important;
+    }
+    html.theme-navy.dark .dark\:text-slate-400 {
+        color: hsl(215 40% 70%) !important;
+    }
+    /* ---------- EMERALD (green) ---------- */
+    html.theme-emerald {
+        --primary: 160 84% 39%;
+        --primary-foreground: 0 0% 100%;
+        --border: 160 30% 80%;
+        --card: 155 50% 98%;
+        --secondary: 160 40% 96%;
+        --muted: 160 30% 95%;
+        --input: 160 25% 90%;
+        --ring: 160 84% 39%;
+    }
+    html.theme-emerald body {
+        background: linear-gradient(135deg, hsl(160 50% 93%) 0%, hsl(150 55% 90%) 50%, hsl(170 45% 92%) 100%);
+    }
+    html.theme-emerald .bg-white {
+        background-color: hsl(155 50% 98%) !important;
+    }
+    html.theme-emerald .text-slate-900 {
+        color: hsl(160 55% 16%) !important;
+    }
+    html.theme-emerald .text-slate-600,
+    html.theme-emerald .text-slate-700 {
+        color: hsl(160 35% 30%) !important;
+    }
+    html.theme-emerald.dark {
+        --primary: 160 84% 55%;
+        --primary-foreground: 160 40% 8%;
+        --border: 160 30% 20%;
+        --card: 160 35% 13%;
+        --secondary: 160 20% 18%;
+        --muted: 160 20% 18%;
+        --input: 160 20% 20%;
+        --ring: 160 84% 55%;
+    }
+    html.theme-emerald.dark body {
+        background: linear-gradient(135deg, hsl(160 40% 7%) 0%, hsl(150 45% 9%) 50%, hsl(170 35% 8%) 100%);
+    }
+    html.theme-emerald.dark .dark\:bg-slate-800 {
+        background-color: hsl(160 35% 13%) !important;
+    }
+    html.theme-emerald.dark .dark\:bg-slate-700 {
+        background-color: hsl(160 30% 17%) !important;
+    }
+    --secondary: 280 40% 96%;
+    --muted: 280 30% 95%;
+    --input: 280 25% 90%;
+    --ring: 280 91% 48%;
+    html.theme-emerald.dark .dark\:text-slate-50 {
+        color: hsl(160 80% 94%) !important;
+    }
+    html.theme-emerald.dark .dark\:text-slate-400 {
+        color: hsl(160 35% 72%) !important;
+    }
+    /* ---------- PURPLE (violet) ---------- */
+    html.theme-purple {
+        --primary: 280 91% 48%;
+        --primary-foreground: 0 0% 100%;
+        --border: 280 30% 80%;
+        --card: 275 65% 98%;
+        --secondary: 280 40% 96%;
+        --muted: 280 30% 95%;
+        --input: 280 25% 90%;
+        --ring: 280 91% 48%;
+    }
+    html.theme-purple body {
+        background: linear-gradient(135deg, hsl(280 60% 95%) 0%, hsl(270 65% 92%) 50%, hsl(290 55% 94%) 100%);
+    }
+    html.theme-purple .bg-white {
+        background-color: hsl(275 65% 98%) !important;
+    }
+    html.theme-purple .text-slate-900 {
+        color: hsl(280 55% 22%) !important;
+    }
+    html.theme-purple .text-slate-600,
+    html.theme-purple .text-slate-700 {
+        color: hsl(280 35% 38%) !important;
+    }
+    html.theme-purple.dark {
+        --primary: 280 91% 60%;
+        --primary-foreground: 280 40% 8%;
+        --border: 280 30% 20%;
+        --card: 280 40% 14%;
+        --secondary: 280 20% 18%;
+        --muted: 280 20% 18%;
+        --input: 280 20% 20%;
+        --ring: 280 91% 60%;
+    }
+    html.theme-purple.dark body {
+        background: linear-gradient(135deg, hsl(280 50% 8%) 0%, hsl(270 55% 10%) 50%, hsl(290 45% 9%) 100%);
+    }
+    html.theme-purple.dark .dark\:bg-slate-800 {
+        background-color: hsl(280 40% 14%) !important;
+    }
+    html.theme-purple.dark .dark\:bg-slate-700 {
+        background-color: hsl(280 35% 18%) !important;
+    }
+    html.theme-purple.dark .dark\:text-slate-50 {
+        color: hsl(280 90% 95%) !important;
+    }
+    html.theme-purple.dark .dark\:text-slate-400 {
+        color: hsl(280 40% 75%) !important;
+    }
+    /* ---------- ROSE (pink) ---------- */
+    html.theme-rose {
+        --primary: 350 89% 60%;
+        --primary-foreground: 0 0% 100%;
+        --border: 350 30% 80%;
+        --card: 345 80% 98%;
+        --secondary: 350 40% 96%;
+        --muted: 350 30% 95%;
+        --input: 350 25% 90%;
+        --ring: 350 89% 60%;
+    }
+    html.theme-rose body {
+        background: linear-gradient(135deg, hsl(350 85% 95%) 0%, hsl(340 80% 92%) 50%, hsl(360 80% 94%) 100%);
+    }
+    html.theme-rose .bg-white {
+        background-color: hsl(345 80% 98%) !important;
+    }
+    html.theme-rose .text-slate-900 {
+        color: hsl(350 65% 22%) !important;
+    }
+    html.theme-rose .text-slate-600,
+    html.theme-rose .text-slate-700 {
+        color: hsl(350 40% 38%) !important;
+    }
+    html.theme-rose.dark {
+        --primary: 350 89% 72%;
+        --primary-foreground: 350 40% 8%;
+        --border: 350 30% 20%;
+        --card: 350 40% 14%;
+        --secondary: 350 20% 18%;
+        --muted: 350 20% 18%;
+        --input: 350 20% 20%;
+        --ring: 350 89% 72%;
+    }
+    html.theme-rose.dark body {
+        background: linear-gradient(135deg, hsl(350 50% 8%) 0%, hsl(340 45% 10%) 50%, hsl(360 45% 9%) 100%);
+    }
+    html.theme-rose.dark .dark\:bg-slate-800 {
+        background-color: hsl(350 40% 14%) !important;
+    }
+    html.theme-rose.dark .dark\:bg-slate-700 {
+        background-color: hsl(350 35% 18%) !important;
+    }
+    html.theme-rose.dark .dark\:text-slate-50 {
+        color: hsl(345 90% 95%) !important;
+    }
+    html.theme-rose.dark .dark\:text-slate-400 {
+        color: hsl(350 40% 78%) !important;
+    }
+    /* ---------- AMBER (orange) ---------- */
+    html.theme-amber {
+        --primary: 40 96% 53%;
+        --primary-foreground: 0 0% 100%;
+        --border: 40 30% 80%;
+        --card: 38 100% 98%;
+        --secondary: 40 40% 96%;
+        --muted: 40 30% 95%;
+        --input: 40 25% 90%;
+        --ring: 40 96% 53%;
+    }
+    html.theme-amber body {
+        background: linear-gradient(135deg, hsl(40 100% 94%) 0%, hsl(30 95% 91%) 50%, hsl(45 100% 93%) 100%);
+    }
+    html.theme-amber .bg-white {
+        background-color: hsl(38 100% 98%) !important;
+    }
+    html.theme-amber .text-slate-900 {
+        color: hsl(35 80% 20%) !important;
+    }
+    html.theme-amber .text-slate-600,
+    html.theme-amber .text-slate-700 {
+        color: hsl(35 55% 35%) !important;
+    }
+    html.theme-amber.dark {
+        --primary: 40 96% 65%;
+        --primary-foreground: 40 40% 8%;
+        --border: 40 30% 20%;
+        --card: 40 40% 14%;
+        --secondary: 40 20% 18%;
+        --muted: 40 20% 18%;
+        --input: 40 20% 20%;
+        --ring: 40 96% 65%;
+    }
+    html.theme-amber.dark body {
+        background: linear-gradient(135deg, hsl(35 50% 8%) 0%, hsl(30 55% 10%) 50%, hsl(40 50% 9%) 100%);
+    }
+    html.theme-amber.dark .dark\:bg-slate-800 {
+        background-color: hsl(35 40% 14%) !important;
+    }
+    html.theme-amber.dark .dark\:bg-slate-700 {
+        background-color: hsl(35 35% 18%) !important;
+    }
+    html.theme-amber.dark .dark\:text-slate-50 {
+        color: hsl(40 100% 95%) !important;
+    }
+    html.theme-amber.dark .dark\:text-slate-400 {
+        color: hsl(40 55% 75%) !important;
+    }
+    /* ---------- SLATE (gray) ---------- */
+    html.theme-slate {
+        --primary: 215 60% 45%;
+        --primary-foreground: 0 0% 100%;
+        --border: 215 20% 80%;
+        --card: 215 25% 98%;
+        --secondary: 215 40% 96%;
+        --muted: 215 30% 95%;
+        --input: 215 25% 90%;
+        --ring: 215 60% 45%;
+    }
+    html.theme-slate body {
+        background: linear-gradient(135deg, hsl(220 20% 93%) 0%, hsl(210 25% 90%) 50%, hsl(230 18% 92%) 100%);
+    }
+    html.theme-slate .bg-white {
+        background-color: hsl(215 25% 98%) !important;
+    }
+    html.theme-slate .text-slate-900 {
+        color: hsl(215 30% 18%) !important;
+    }
+    html.theme-slate .text-slate-600,
+    html.theme-slate .text-slate-700 {
+        color: hsl(215 20% 32%) !important;
+    }
+    html.theme-slate.dark {
+        --primary: 215 60% 60%;
+        --primary-foreground: 215 20% 8%;
+        --border: 215 20% 20%;
+        --card: 215 20% 14%;
+        --secondary: 215 20% 18%;
+        --muted: 215 20% 18%;
+        --input: 215 20% 20%;
+        --ring: 215 60% 60%;
+    }
+    html.theme-slate.dark body {
+        background: linear-gradient(135deg, hsl(220 18% 8%) 0%, hsl(210 20% 10%) 50%, hsl(230 18% 9%) 100%);
+    }
+    html.theme-slate.dark .dark\:bg-slate-800 {
+        background-color: hsl(215 20% 14%) !important;
+    }
+    html.theme-slate.dark .dark\:bg-slate-700 {
+        background-color: hsl(215 18% 18%) !important;
+    }
+    html.theme-slate.dark .dark\:text-slate-50 {
+        color: hsl(215 95% 95%) !important;
+    }
+    html.theme-slate.dark .dark\:text-slate-400 {
+        color: hsl(215 30% 70%) !important;
+    }
+    /* ---------- TEAL (cyan/turquoise) ---------- */
+    html.theme-teal {
+        --primary: 180 95% 40%;
+        --primary-foreground: 0 0% 100%;
+        --border: 180 30% 80%;
+        --card: 175 60% 98%;
+        --secondary: 180 40% 96%;
+        --muted: 180 30% 95%;
+        --input: 180 25% 90%;
+        --ring: 180 95% 40%;
+    }
+    html.theme-teal body {
+        background: linear-gradient(135deg, hsl(180 65% 94%) 0%, hsl(170 70% 91%) 50%, hsl(190 60% 93%) 100%);
+    }
+    html.theme-teal .bg-white {
+        background-color: hsl(175 60% 98%) !important;
+    }
+    html.theme-teal .text-slate-900 {
+        color: hsl(180 60% 16%) !important;
+    }
+    html.theme-teal .text-slate-600,
+    html.theme-teal .text-slate-700 {
+        color: hsl(180 35% 30%) !important;
+    }
+    html.theme-teal.dark {
+        --primary: 180 95% 55%;
+        --primary-foreground: 180 40% 8%;
+        --border: 180 30% 20%;
+        --card: 180 40% 14%;
+        --secondary: 180 20% 18%;
+        --muted: 180 20% 18%;
+        --input: 180 20% 20%;
+        --ring: 180 95% 55%;
+    }
+    html.theme-teal.dark body {
+        background: linear-gradient(135deg, hsl(180 50% 7%) 0%, hsl(170 55% 9%) 50%, hsl(190 45% 8%) 100%);
+    }
+    html.theme-teal.dark .dark\:bg-slate-800 {
+        background-color: hsl(180 40% 14%) !important;
+    }
+    html.theme-teal.dark .dark\:bg-slate-700 {
+        background-color: hsl(180 35% 18%) !important;
+    }
+    html.theme-teal.dark .dark\:text-slate-50 {
+        color: hsl(180 80% 94%) !important;
+    }
+    html.theme-teal.dark .dark\:text-slate-400 {
+        color: hsl(180 40% 72%) !important;
+    }
+    /* ---------- INDIGO (deep blue-purple) ---------- */
+    html.theme-indigo {
+        --primary: 225 90% 45%;
+        --primary-foreground: 0 0% 100%;
+        --border: 225 30% 80%;
+        --card: 220 70% 98%;
+        --secondary: 225 40% 96%;
+        --muted: 225 30% 95%;
+        --input: 225 25% 90%;
+        --ring: 225 90% 45%;
+    }
+    html.theme-indigo body {
+        background: linear-gradient(135deg, hsl(225 70% 95%) 0%, hsl(215 75% 92%) 50%, hsl(235 65% 94%) 100%);
+    }
+    html.theme-indigo .bg-white {
+        background-color: hsl(220 70% 98%) !important;
+    }
+    html.theme-indigo .text-slate-900 {
+        color: hsl(225 60% 20%) !important;
+    }
+    html.theme-indigo .text-slate-600,
+    html.theme-indigo .text-slate-700 {
+        color: hsl(225 35% 35%) !important;
+    }
+    html.theme-indigo.dark {
+        --primary: 225 90% 60%;
+        --primary-foreground: 225 40% 8%;
+        --border: 225 30% 20%;
+        --card: 225 40% 14%;
+        --secondary: 225 20% 18%;
+        --muted: 225 20% 18%;
+        --input: 225 20% 20%;
+        --ring: 225 90% 60%;
+    }
+    html.theme-indigo.dark body {
+        background: linear-gradient(135deg, hsl(225 60% 8%) 0%, hsl(215 65% 10%) 50%, hsl(235 55% 9%) 100%);
+    }
+    html.theme-indigo.dark .dark\:bg-slate-800 {
+        background-color: hsl(225 40% 14%) !important;
+    }
+    html.theme-indigo.dark .dark\:bg-slate-700 {
+        background-color: hsl(225 35% 18%) !important;
+    }
+    html.theme-indigo.dark .dark\:text-slate-50 {
+        color: hsl(225 90% 95%) !important;
+    }
+    html.theme-indigo.dark .dark\:text-slate-400 {
+        color: hsl(225 40% 75%) !important;
+    }
+    /* ---------- CORAL (warm orange-red) ---------- */
+    html.theme-coral {
+        --primary: 10 88% 58%;
+        --primary-foreground: 0 0% 100%;
+        --border: 10 30% 80%;
+        --card: 5 90% 98%;
+        --secondary: 10 40% 96%;
+        --muted: 10 30% 95%;
+        --input: 10 25% 90%;
+        --ring: 10 88% 58%;
+    }
+    html.theme-coral body {
+        background: linear-gradient(135deg, hsl(10 85% 95%) 0%, hsl(0 90% 92%) 50%, hsl(20 80% 94%) 100%);
+    }
+    html.theme-coral .bg-white {
+        background-color: hsl(5 90% 98%) !important;
+    }
+    html.theme-coral .text-slate-900 {
+        color: hsl(10 70% 20%) !important;
+    }
+    html.theme-coral .text-slate-600,
+    html.theme-coral .text-slate-700 {
+        color: hsl(10 40% 36%) !important;
+    }
+    html.theme-coral.dark {
+        --primary: 10 88% 68%;
+        --primary-foreground: 10 40% 8%;
+        --border: 10 30% 20%;
+        --card: 10 40% 14%;
+        --secondary: 10 20% 18%;
+        --muted: 10 20% 18%;
+        --input: 10 20% 20%;
+        --ring: 10 88% 68%;
+    }
+    html.theme-coral.dark body {
+        background: linear-gradient(135deg, hsl(10 55% 8%) 0%, hsl(0 60% 10%) 50%, hsl(20 50% 9%) 100%);
+    }
+    html.theme-coral.dark .dark\:bg-slate-800 {
+        background-color: hsl(10 40% 14%) !important;
+    }
+    html.theme-coral.dark .dark\:bg-slate-700 {
+        background-color: hsl(10 35% 18%) !important;
+    }
+    html.theme-coral.dark .dark\:text-slate-50 {
+        color: hsl(10 90% 95%) !important;
+    }
+    html.theme-coral.dark .dark\:text-slate-400 {
+        color: hsl(10 40% 77%) !important;
+    }
+    /* ---------- LIME (bright green-yellow) ---------- */
+    html.theme-lime {
+        --primary: 110 90% 50%;
+        --primary-foreground: 0 0% 100%;
+        --border: 110 30% 80%;
+        --card: 105 85% 98%;
+        --secondary: 110 40% 96%;
+        --muted: 110 30% 95%;
+        --input: 110 25% 90%;
+        --ring: 110 90% 50%;
+    }
+    html.theme-lime body {
+        background: linear-gradient(135deg, hsl(110 85% 94%) 0%, hsl(100 90% 91%) 50%, hsl(120 80% 93%) 100%);
+    }
+    html.theme-lime .bg-white {
+        background-color: hsl(105 85% 98%) !important;
+    }
+    html.theme-lime .text-slate-900 {
+        color: hsl(110 60% 18%) !important;
+    }
+    html.theme-lime .text-slate-600,
+    html.theme-lime .text-slate-700 {
+        color: hsl(110 35% 32%) !important;
+    }
+    html.theme-lime.dark {
+        --primary: 110 90% 60%;
+        --primary-foreground: 110 40% 8%;
+        --border: 110 30% 20%;
+        --card: 110 40% 14%;
+        --secondary: 110 20% 18%;
+        --muted: 110 20% 18%;
+        --input: 110 20% 20%;
+        --ring: 110 90% 60%;
+    }
+    html.theme-lime.dark body {
+        background: linear-gradient(135deg, hsl(110 60% 7%) 0%, hsl(100 65% 9%) 50%, hsl(120 55% 8%) 100%);
+    }
+    html.theme-lime.dark .dark\:bg-slate-800 {
+        background-color: hsl(110 40% 14%) !important;
+    }
+    html.theme-lime.dark .dark\:bg-slate-700 {
+        background-color: hsl(110 35% 18%) !important;
+    }
+    html.theme-lime.dark .dark\:text-slate-50 {
+        color: hsl(110 80% 94%) !important;
+    }
+    html.theme-lime.dark .dark\:text-slate-400 {
+        color: hsl(110 40% 70%) !important;
+    }
+    /* =====================================================
+       Inactive extension badge for new themes
+       ===================================================== */
+    /* Teal — teal accent */
+    html.theme-teal .ext-inactive {
+        color: hsl(180 65% 35%) !important;
+        background-color: hsl(180 70% 94%) !important;
+        border-color: hsl(180 50% 65%);
+    }
+    html.theme-teal.dark .ext-inactive {
+        color: hsl(180 75% 78%) !important;
+        background-color: hsl(180 35% 20%) !important;
+        border-color: hsl(180 40% 40%);
+    }
+    /* Indigo — indigo accent */
+    html.theme-indigo .ext-inactive {
+        color: hsl(225 65% 42%) !important;
+        background-color: hsl(225 75% 96%) !important;
+        border-color: hsl(225 55% 70%);
+    }
+    html.theme-indigo.dark .ext-inactive {
+        color: hsl(225 75% 80%) !important;
+        background-color: hsl(225 35% 22%) !important;
+        border-color: hsl(225 40% 42%);
+    }
+    /* Coral — coral accent */
+    html.theme-coral .ext-inactive {
+        color: hsl(10 65% 42%) !important;
+        background-color: hsl(10 80% 96%) !important;
+        border-color: hsl(10 55% 68%);
+    }
+    html.theme-coral.dark .ext-inactive {
+        color: hsl(10 75% 78%) !important;
+        background-color: hsl(10 35% 20%) !important;
+        border-color: hsl(10 40% 40%);
+    }
+    /* Lime — lime accent */
+    html.theme-lime .ext-inactive {
+        color: hsl(110 60% 35%) !important;
+        background-color: hsl(110 70% 94%) !important;
+        border-color: hsl(110 50% 62%);
+    }
+    html.theme-lime.dark .ext-inactive {
+        color: hsl(110 70% 76%) !important;
+        background-color: hsl(110 35% 18%) !important;
+        border-color: hsl(110 40% 38%);
+    }
+    /* =====================================================
+       Back Button for new themes
+       ===================================================== */
+    /* Teal theme */
+    html.theme-teal .back-button {
+        background: linear-gradient(135deg, hsl(180 85% 42%), hsl(175 90% 48%));
+    }
+    html.theme-teal .back-button:hover {
+        background: linear-gradient(135deg, hsl(180 85% 32%), hsl(175 90% 38%));
+    }
+    html.theme-teal.dark .back-button {
+        background: linear-gradient(135deg, hsl(180 85% 50%), hsl(175 90% 56%));
+    }
+    html.theme-teal.dark .back-button:hover {
+        background: linear-gradient(135deg, hsl(180 85% 40%), hsl(175 90% 46%));
+    }
+    
+    /* Indigo theme */
+    html.theme-indigo .back-button {
+        background: linear-gradient(135deg, hsl(225 85% 48%), hsl(220 90% 54%));
+    }
+    html.theme-indigo .back-button:hover {
+        background: linear-gradient(135deg, hsl(225 85% 38%), hsl(220 90% 44%));
+    }
+    html.theme-indigo.dark .back-button {
+        background: linear-gradient(135deg, hsl(225 85% 55%), hsl(220 90% 60%));
+    }
+    html.theme-indigo.dark .back-button:hover {
+        background: linear-gradient(135deg, hsl(225 85% 45%), hsl(220 90% 50%));
+    }
+    
+    /* Coral theme */
+    html.theme-coral .back-button {
+        background: linear-gradient(135deg, hsl(10 85% 50%), hsl(5 90% 56%));
+    }
+    html.theme-coral .back-button:hover {
+        background: linear-gradient(135deg, hsl(10 85% 40%), hsl(5 90% 46%));
+    }
+    html.theme-coral.dark .back-button {
+        background: linear-gradient(135deg, hsl(10 85% 58%), hsl(5 90% 63%));
+    }
+    html.theme-coral.dark .back-button:hover {
+        background: linear-gradient(135deg, hsl(10 85% 48%), hsl(5 90% 53%));
+    }
+    
+    /* Lime theme */
+    html.theme-lime .back-button {
+        background: linear-gradient(135deg, hsl(110 85% 45%), hsl(105 90% 52%));
+    }
+    html.theme-lime .back-button:hover {
+        background: linear-gradient(135deg, hsl(110 85% 35%), hsl(105 90% 42%));
+    }
+    html.theme-lime.dark .back-button {
+        background: linear-gradient(135deg, hsl(110 85% 53%), hsl(105 90% 60%));
+    }
+    html.theme-lime.dark .back-button:hover {
+        background: linear-gradient(135deg, hsl(110 85% 43%), hsl(105 90% 50%));
+    }
+    /* =====================================================
+       Inactive extension badge — different color per theme
+       so it's always visually distinct from active orange.
+       ===================================================== */
+    .ext-inactive {
+        color: hsl(0 70% 45%) !important;
+        background-color: hsl(0 85% 96%) !important;
+        border: 1px dashed hsl(0 65% 65%);
+        opacity: 0.9;
+    }
+    .dark .ext-inactive {
+        color: hsl(0 80% 78%) !important;
+        background-color: hsl(0 45% 18%) !important;
+        border-color: hsl(0 55% 38%);
+    }
+    /* Navy — slate gray */
+    html.theme-navy .ext-inactive {
+        color: hsl(215 40% 40%) !important;
+        background-color: hsl(210 35% 92%) !important;
+        border-color: hsl(210 30% 65%);
+    }
+    html.theme-navy.dark .ext-inactive {
+        color: hsl(210 50% 75%) !important;
+        background-color: hsl(215 35% 22%) !important;
+        border-color: hsl(210 35% 40%);
+    }
+    /* Emerald — teal */
+    html.theme-emerald .ext-inactive {
+        color: hsl(180 55% 32%) !important;
+        background-color: hsl(180 60% 92%) !important;
+        border-color: hsl(180 45% 60%);
+    }
+    html.theme-emerald.dark .ext-inactive {
+        color: hsl(180 65% 75%) !important;
+        background-color: hsl(180 35% 18%) !important;
+        border-color: hsl(180 40% 38%);
+    }
+    /* Purple — indigo */
+    html.theme-purple .ext-inactive {
+        color: hsl(250 55% 45%) !important;
+        background-color: hsl(250 70% 95%) !important;
+        border-color: hsl(250 50% 70%);
+    }
+    html.theme-purple.dark .ext-inactive {
+        color: hsl(250 70% 80%) !important;
+        background-color: hsl(250 35% 22%) !important;
+        border-color: hsl(250 40% 42%);
+    }
+    /* Rose — pink */
+    html.theme-rose .ext-inactive {
+        color: hsl(340 60% 38%) !important;
+        background-color: hsl(340 70% 95%) !important;
+        border-color: hsl(340 50% 65%);
+    }
+    html.theme-rose.dark .ext-inactive {
+        color: hsl(340 70% 78%) !important;
+        background-color: hsl(340 35% 22%) !important;
+        border-color: hsl(340 40% 42%);
+    }
+    /* Amber — brown */
+    html.theme-amber .ext-inactive {
+        color: hsl(25 60% 35%) !important;
+        background-color: hsl(30 70% 92%) !important;
+        border-color: hsl(28 50% 65%);
+    }
+    html.theme-amber.dark .ext-inactive {
+        color: hsl(30 65% 75%) !important;
+        background-color: hsl(25 35% 20%) !important;
+        border-color: hsl(28 40% 40%);
+    }
+    /* Slate — cool gray */
+    html.theme-slate .ext-inactive {
+        color: hsl(210 40% 40%) !important;
+        background-color: hsl(210 35% 92%) !important;
+        border-color: hsl(210 30% 65%);
+    }
+    html.theme-slate.dark .ext-inactive {
+        color: hsl(210 50% 75%) !important;
+        background-color: hsl(210 35% 22%) !important;
+        border-color: hsl(210 35% 40%);
+    }
+    
+    /* =====================================================
+       Back Button — theme-aware colors
+       ===================================================== */
+    .back-button {
+        background: linear-gradient(135deg, hsl(215 90% 45%), hsl(210 100% 50%));
+    }
+    .back-button:hover {
+        background: linear-gradient(135deg, hsl(215 90% 35%), hsl(210 100% 40%));
+    }
+    .dark .back-button {
+        background: linear-gradient(135deg, hsl(215 90% 50%), hsl(210 100% 55%));
+    }
+    .dark .back-button:hover {
+        background: linear-gradient(135deg, hsl(215 90% 40%), hsl(210 100% 45%));
+    }
+    
+    /* Navy theme */
+    html.theme-navy .back-button {
+        background: linear-gradient(135deg, hsl(220 85% 45%), hsl(215 90% 50%));
+    }
+    html.theme-navy .back-button:hover {
+        background: linear-gradient(135deg, hsl(220 85% 35%), hsl(215 90% 40%));
+    }
+    html.theme-navy.dark .back-button {
+        background: linear-gradient(135deg, hsl(220 85% 50%), hsl(215 90% 55%));
+    }
+    html.theme-navy.dark .back-button:hover {
+        background: linear-gradient(135deg, hsl(220 85% 40%), hsl(215 90% 45%));
+    }
+    
+    /* Emerald theme */
+    html.theme-emerald .back-button {
+        background: linear-gradient(135deg, hsl(180 80% 40%), hsl(175 85% 45%));
+    }
+    html.theme-emerald .back-button:hover {
+        background: linear-gradient(135deg, hsl(180 80% 30%), hsl(175 85% 35%));
+    }
+    html.theme-emerald.dark .back-button {
+        background: linear-gradient(135deg, hsl(180 80% 45%), hsl(175 85% 50%));
+    }
+    html.theme-emerald.dark .back-button:hover {
+        background: linear-gradient(135deg, hsl(180 80% 35%), hsl(175 85% 40%));
+    }
+    
+    /* Purple theme */
+    html.theme-purple .back-button {
+        background: linear-gradient(135deg, hsl(270 80% 45%), hsl(260 85% 50%));
+    }
+    html.theme-purple .back-button:hover {
+        background: linear-gradient(135deg, hsl(270 80% 35%), hsl(260 85% 40%));
+    }
+    html.theme-purple.dark .back-button {
+        background: linear-gradient(135deg, hsl(270 80% 50%), hsl(260 85% 55%));
+    }
+    html.theme-purple.dark .back-button:hover {
+        background: linear-gradient(135deg, hsl(270 80% 40%), hsl(260 85% 45%));
+    }
+    
+    /* Rose theme */
+    html.theme-rose .back-button {
+        background: linear-gradient(135deg, hsl(345 80% 45%), hsl(340 85% 50%));
+    }
+    html.theme-rose .back-button:hover {
+        background: linear-gradient(135deg, hsl(345 80% 35%), hsl(340 85% 40%));
+    }
+    html.theme-rose.dark .back-button {
+        background: linear-gradient(135deg, hsl(345 80% 50%), hsl(340 85% 55%));
+    }
+    html.theme-rose.dark .back-button:hover {
+        background: linear-gradient(135deg, hsl(345 80% 40%), hsl(340 85% 45%));
+    }
+    
+    /* Amber theme */
+    html.theme-amber .back-button {
+        background: linear-gradient(135deg, hsl(35 80% 45%), hsl(30 85% 50%));
+    }
+    html.theme-amber .back-button:hover {
+        background: linear-gradient(135deg, hsl(35 80% 35%), hsl(30 85% 40%));
+    }
+    html.theme-amber.dark .back-button {
+        background: linear-gradient(135deg, hsl(35 80% 50%), hsl(30 85% 55%));
+    }
+    html.theme-amber.dark .back-button:hover {
+        background: linear-gradient(135deg, hsl(35 80% 40%), hsl(30 85% 45%));
+    }
+    
+    /* Slate theme */
+    html.theme-slate .back-button {
+        background: linear-gradient(135deg, hsl(210 50% 40%), hsl(215 50% 45%));
+    }
+    html.theme-slate .back-button:hover {
+        background: linear-gradient(135deg, hsl(210 50% 30%), hsl(215 50% 35%));
+    }
+    html.theme-slate.dark .back-button {
+        background: linear-gradient(135deg, hsl(210 50% 45%), hsl(215 50% 50%));
+    }
+    html.theme-slate.dark .back-button:hover {
+        background: linear-gradient(135deg, hsl(210 50% 35%), hsl(215 50% 40%));
+    }
+}
+
+@layer components {
+    /* ============================================ 
+       HOME PAGE UNIVERSAL THEME COLORS
+       ============================================ */
+    /* NAVY theme — all text and content colors */
+    html.theme-navy .text-slate-700 {
+        color: hsl(215 25% 32%) !important;
+    }
+    html.theme-navy .text-slate-600 {
+        color: hsl(215 25% 35%) !important;
+    }
+    html.theme-navy .text-slate-300 {
+        color: hsl(215 30% 85%) !important;
+    }
+    html.theme-navy .text-slate-900 {
+        color: hsl(215 40% 18%) !important;
+    }
+    html.theme-navy .bg-slate-200 {
+        background-color: hsl(215 20% 88%) !important;
+    }
+    html.theme-navy .border-slate-300,
+    html.theme-navy .border-slate-200 {
+        border-color: hsl(215 25% 85%) !important;
+    }
+    html.theme-navy .border-slate-600,
+    html.theme-navy .border-slate-700 {
+        border-color: hsl(215 25% 32%) !important;
+    }
+    html.theme-navy.dark .text-slate-700 {
+        color: hsl(215 30% 65%) !important;
+    }
+    html.theme-navy.dark .text-slate-600 {
+        color: hsl(215 30% 60%) !important;
+    }
+    html.theme-navy.dark .text-slate-300 {
+        color: hsl(215 30% 75%) !important;
+    }
+    html.theme-navy.dark .text-slate-900 {
+        color: hsl(215 95% 95%) !important;
+    }
+    html.theme-navy.dark .bg-slate-200 {
+        background-color: hsl(215 25% 25%) !important;
+    }
+    html.theme-navy.dark .border-slate-300,
+    html.theme-navy.dark .border-slate-200 {
+        border-color: hsl(215 25% 35%) !important;
+    }
+    html.theme-navy.dark .border-slate-600,
+    html.theme-navy.dark .border-slate-700 {
+        border-color: hsl(215 30% 65%) !important;
+    }
+    /* EMERALD theme — all text and content colors */
+    html.theme-emerald .text-slate-700 {
+        color: hsl(160 35% 30%) !important;
+    }
+    html.theme-emerald .text-slate-600 {
+        color: hsl(160 35% 33%) !important;
+    }
+    html.theme-emerald .text-slate-300 {
+        color: hsl(160 40% 83%) !important;
+    }
+    html.theme-emerald .text-slate-900 {
+        color: hsl(160 55% 16%) !important;
+    }
+    html.theme-emerald .bg-slate-200 {
+        background-color: hsl(160 35% 88%) !important;
+    }
+    html.theme-emerald .border-slate-300,
+    html.theme-emerald .border-slate-200 {
+        border-color: hsl(160 35% 85%) !important;
+    }
+    html.theme-emerald .border-slate-600,
+    html.theme-emerald .border-slate-700 {
+        border-color: hsl(160 35% 30%) !important;
+    }
+    html.theme-emerald.dark .text-slate-700 {
+        color: hsl(160 40% 68%) !important;
+    }
+    html.theme-emerald.dark .text-slate-600 {
+        color: hsl(160 40% 63%) !important;
+    }
+    html.theme-emerald.dark .text-slate-300 {
+        color: hsl(160 40% 75%) !important;
+    }
+    html.theme-emerald.dark .text-slate-900 {
+        color: hsl(160 80% 94%) !important;
+    }
+    html.theme-emerald.dark .bg-slate-200 {
+        background-color: hsl(160 35% 25%) !important;
+    }
+    html.theme-emerald.dark .border-slate-300,
+    html.theme-emerald.dark .border-slate-200 {
+        border-color: hsl(160 35% 35%) !important;
+    }
+    html.theme-emerald.dark .border-slate-600,
+    html.theme-emerald.dark .border-slate-700 {
+        border-color: hsl(160 40% 68%) !important;
+    }
+    /* PURPLE theme — all text and content colors */
+    html.theme-purple .text-slate-700 {
+        color: hsl(280 35% 38%) !important;
+    }
+    html.theme-purple .text-slate-600 {
+        color: hsl(280 35% 41%) !important;
+    }
+    html.theme-purple .text-slate-300 {
+        color: hsl(280 40% 85%) !important;
+    }
+    html.theme-purple .text-slate-900 {
+        color: hsl(280 55% 22%) !important;
+    }
+    html.theme-purple .bg-slate-200 {
+        background-color: hsl(280 35% 90%) !important;
+    }
+    html.theme-purple .border-slate-300,
+    html.theme-purple .border-slate-200 {
+        border-color: hsl(280 35% 87%) !important;
+    }
+    html.theme-purple .border-slate-600,
+    html.theme-purple .border-slate-700 {
+        border-color: hsl(280 35% 38%) !important;
+    }
+    html.theme-purple.dark .text-slate-700 {
+        color: hsl(280 40% 70%) !important;
+    }
+    html.theme-purple.dark .text-slate-600 {
+        color: hsl(280 40% 65%) !important;
+    }
+    html.theme-purple.dark .text-slate-300 {
+        color: hsl(280 40% 78%) !important;
+    }
+    html.theme-purple.dark .text-slate-900 {
+        color: hsl(280 90% 95%) !important;
+    }
+    html.theme-purple.dark .bg-slate-200 {
+        background-color: hsl(280 35% 28%) !important;
+    }
+    html.theme-purple.dark .border-slate-300,
+    html.theme-purple.dark .border-slate-200 {
+        border-color: hsl(280 35% 38%) !important;
+    }
+    html.theme-purple.dark .border-slate-600,
+    html.theme-purple.dark .border-slate-700 {
+        border-color: hsl(280 40% 70%) !important;
+    }
+    /* ROSE theme — all text and content colors */
+    html.theme-rose .text-slate-700 {
+        color: hsl(350 40% 38%) !important;
+    }
+    html.theme-rose .text-slate-600 {
+        color: hsl(350 40% 41%) !important;
+    }
+    html.theme-rose .text-slate-300 {
+        color: hsl(350 40% 85%) !important;
+    }
+    html.theme-rose .text-slate-900 {
+        color: hsl(350 65% 22%) !important;
+    }
+    html.theme-rose .bg-slate-200 {
+        background-color: hsl(350 40% 90%) !important;
+    }
+    html.theme-rose .border-slate-300,
+    html.theme-rose .border-slate-200 {
+        border-color: hsl(350 40% 87%) !important;
+    }
+    html.theme-rose .border-slate-600,
+    html.theme-rose .border-slate-700 {
+        border-color: hsl(350 40% 38%) !important;
+    }
+    html.theme-rose.dark .text-slate-700 {
+        color: hsl(350 40% 70%) !important;
+    }
+    html.theme-rose.dark .text-slate-600 {
+        color: hsl(350 40% 65%) !important;
+    }
+    html.theme-rose.dark .text-slate-300 {
+        color: hsl(350 40% 78%) !important;
+    }
+    html.theme-rose.dark .text-slate-900 {
+        color: hsl(345 90% 95%) !important;
+    }
+    html.theme-rose.dark .bg-slate-200 {
+        background-color: hsl(350 35% 28%) !important;
+    }
+    html.theme-rose.dark .border-slate-300,
+    html.theme-rose.dark .border-slate-200 {
+        border-color: hsl(350 35% 38%) !important;
+    }
+    html.theme-rose.dark .border-slate-600,
+    html.theme-rose.dark .border-slate-700 {
+        border-color: hsl(350 40% 70%) !important;
+    }
+    /* AMBER theme — all text and content colors */
+    html.theme-amber .text-slate-700 {
+        color: hsl(35 55% 35%) !important;
+    }
+    html.theme-amber .text-slate-600 {
+        color: hsl(35 55% 38%) !important;
+    }
+    html.theme-amber .text-slate-300 {
+        color: hsl(35 50% 83%) !important;
+    }
+    html.theme-amber .text-slate-900 {
+        color: hsl(35 80% 20%) !important;
+    }
+    html.theme-amber .bg-slate-200 {
+        background-color: hsl(35 55% 88%) !important;
+    }
+    html.theme-amber .border-slate-300,
+    html.theme-amber .border-slate-200 {
+        border-color: hsl(35 55% 85%) !important;
+    }
+    html.theme-amber .border-slate-600,
+    html.theme-amber .border-slate-700 {
+        border-color: hsl(35 55% 35%) !important;
+    }
+    html.theme-amber.dark .text-slate-700 {
+        color: hsl(35 50% 68%) !important;
+    }
+    html.theme-amber.dark .text-slate-600 {
+        color: hsl(35 50% 63%) !important;
+    }
+    html.theme-amber.dark .text-slate-300 {
+        color: hsl(35 50% 75%) !important;
+    }
+    html.theme-amber.dark .text-slate-900 {
+        color: hsl(40 100% 95%) !important;
+    }
+    html.theme-amber.dark .bg-slate-200 {
+        background-color: hsl(35 50% 25%) !important;
+    }
+    html.theme-amber.dark .border-slate-300,
+    html.theme-amber.dark .border-slate-200 {
+        border-color: hsl(35 50% 35%) !important;
+    }
+    html.theme-amber.dark .border-slate-600,
+    html.theme-amber.dark .border-slate-700 {
+        border-color: hsl(35 50% 68%) !important;
+    }
+    /* SLATE theme — all text and content colors */
+    html.theme-slate .text-slate-700 {
+        color: hsl(215 20% 32%) !important;
+    }
+    html.theme-slate .text-slate-600 {
+        color: hsl(215 20% 35%) !important;
+    }
+    html.theme-slate .text-slate-300 {
+        color: hsl(215 25% 83%) !important;
+    }
+    html.theme-slate .text-slate-900 {
+        color: hsl(215 30% 18%) !important;
+    }
+    html.theme-slate .bg-slate-200 {
+        background-color: hsl(215 20% 88%) !important;
+    }
+    html.theme-slate .border-slate-300,
+    html.theme-slate .border-slate-200 {
+        border-color: hsl(215 25% 85%) !important;
+    }
+    html.theme-slate .border-slate-600,
+    html.theme-slate .border-slate-700 {
+        border-color: hsl(215 20% 32%) !important;
+    }
+    html.theme-slate.dark .text-slate-700 {
+        color: hsl(215 20% 65%) !important;
+    }
+    html.theme-slate.dark .text-slate-600 {
+        color: hsl(215 20% 60%) !important;
+    }
+    html.theme-slate.dark .text-slate-300 {
+        color: hsl(215 25% 75%) !important;
+    }
+    html.theme-slate.dark .text-slate-900 {
+        color: hsl(215 95% 95%) !important;
+    }
+    html.theme-slate.dark .bg-slate-200 {
+        background-color: hsl(215 20% 25%) !important;
+    }
+    html.theme-slate.dark .border-slate-300,
+    html.theme-slate.dark .border-slate-200 {
+        border-color: hsl(215 25% 35%) !important;
+    }
+    html.theme-slate.dark .border-slate-600,
+    html.theme-slate.dark .border-slate-700 {
+        border-color: hsl(215 20% 65%) !important;
+    }
+    /* ============================================
+       TEAL — Component Colors
+       ============================================ */
+    html.theme-teal .text-slate-700 {
+        color: hsl(180 35% 30%) !important;
+    }
+    html.theme-teal .text-slate-600 {
+        color: hsl(180 35% 33%) !important;
+    }
+    html.theme-teal .text-slate-300 {
+        color: hsl(180 40% 83%) !important;
+    }
+    html.theme-teal .text-slate-900 {
+        color: hsl(180 55% 16%) !important;
+    }
+    html.theme-teal .bg-slate-200 {
+        background-color: hsl(180 35% 88%) !important;
+    }
+    html.theme-teal .border-slate-300,
+    html.theme-teal .border-slate-200 {
+        border-color: hsl(180 35% 85%) !important;
+    }
+    html.theme-teal .border-slate-600,
+    html.theme-teal .border-slate-700 {
+        border-color: hsl(180 35% 30%) !important;
+    }
+    html.theme-teal.dark .text-slate-700 {
+        color: hsl(180 40% 68%) !important;
+    }
+    html.theme-teal.dark .text-slate-600 {
+        color: hsl(180 40% 63%) !important;
+    }
+    html.theme-teal.dark .text-slate-300 {
+        color: hsl(180 40% 75%) !important;
+    }
+    html.theme-teal.dark .text-slate-900 {
+        color: hsl(180 80% 94%) !important;
+    }
+    html.theme-teal.dark .bg-slate-200 {
+        background-color: hsl(180 35% 25%) !important;
+    }
+    html.theme-teal.dark .border-slate-300,
+    html.theme-teal.dark .border-slate-200 {
+        border-color: hsl(180 35% 35%) !important;
+    }
+    html.theme-teal.dark .border-slate-600,
+    html.theme-teal.dark .border-slate-700 {
+        border-color: hsl(180 40% 68%) !important;
+    }
+    /* ============================================
+       INDIGO — Component Colors
+       ============================================ */
+    html.theme-indigo .text-slate-700 {
+        color: hsl(225 35% 35%) !important;
+    }
+    html.theme-indigo .text-slate-600 {
+        color: hsl(225 35% 38%) !important;
+    }
+    html.theme-indigo .text-slate-300 {
+        color: hsl(225 40% 85%) !important;
+    }
+    html.theme-indigo .text-slate-900 {
+        color: hsl(225 55% 20%) !important;
+    }
+    html.theme-indigo .bg-slate-200 {
+        background-color: hsl(225 35% 90%) !important;
+    }
+    html.theme-indigo .border-slate-300,
+    html.theme-indigo .border-slate-200 {
+        border-color: hsl(225 35% 87%) !important;
+    }
+    html.theme-indigo .border-slate-600,
+    html.theme-indigo .border-slate-700 {
+        border-color: hsl(225 35% 35%) !important;
+    }
+    html.theme-indigo.dark .text-slate-700 {
+        color: hsl(225 40% 70%) !important;
+    }
+    html.theme-indigo.dark .text-slate-600 {
+        color: hsl(225 40% 65%) !important;
+    }
+    html.theme-indigo.dark .text-slate-300 {
+        color: hsl(225 40% 77%) !important;
+    }
+    html.theme-indigo.dark .text-slate-900 {
+        color: hsl(225 90% 95%) !important;
+    }
+    html.theme-indigo.dark .bg-slate-200 {
+        background-color: hsl(225 35% 27%) !important;
+    }
+    html.theme-indigo.dark .border-slate-300,
+    html.theme-indigo.dark .border-slate-200 {
+        border-color: hsl(225 35% 37%) !important;
+    }
+    html.theme-indigo.dark .border-slate-600,
+    html.theme-indigo.dark .border-slate-700 {
+        border-color: hsl(225 40% 70%) !important;
+    }
+    /* ============================================
+       CORAL — Component Colors
+       ============================================ */
+    html.theme-coral .text-slate-700 {
+        color: hsl(10 35% 36%) !important;
+    }
+    html.theme-coral .text-slate-600 {
+        color: hsl(10 35% 39%) !important;
+    }
+    html.theme-coral .text-slate-300 {
+        color: hsl(10 40% 85%) !important;
+    }
+    html.theme-coral .text-slate-900 {
+        color: hsl(10 55% 20%) !important;
+    }
+    html.theme-coral .bg-slate-200 {
+        background-color: hsl(10 35% 90%) !important;
+    }
+    html.theme-coral .border-slate-300,
+    html.theme-coral .border-slate-200 {
+        border-color: hsl(10 35% 87%) !important;
+    }
+    html.theme-coral .border-slate-600,
+    html.theme-coral .border-slate-700 {
+        border-color: hsl(10 35% 36%) !important;
+    }
+    html.theme-coral.dark .text-slate-700 {
+        color: hsl(10 40% 70%) !important;
+    }
+    html.theme-coral.dark .text-slate-600 {
+        color: hsl(10 40% 65%) !important;
+    }
+    html.theme-coral.dark .text-slate-300 {
+        color: hsl(10 40% 77%) !important;
+    }
+    html.theme-coral.dark .text-slate-900 {
+        color: hsl(10 90% 95%) !important;
+    }
+    html.theme-coral.dark .bg-slate-200 {
+        background-color: hsl(10 35% 27%) !important;
+    }
+    html.theme-coral.dark .border-slate-300,
+    html.theme-coral.dark .border-slate-200 {
+        border-color: hsl(10 35% 37%) !important;
+    }
+    html.theme-coral.dark .border-slate-600,
+    html.theme-coral.dark .border-slate-700 {
+        border-color: hsl(10 40% 70%) !important;
+    }
+    /* ============================================
+       LIME — Component Colors
+       ============================================ */
+    html.theme-lime .text-slate-700 {
+        color: hsl(110 35% 32%) !important;
+    }
+    html.theme-lime .text-slate-600 {
+        color: hsl(110 35% 35%) !important;
+    }
+    html.theme-lime .text-slate-300 {
+        color: hsl(110 40% 83%) !important;
+    }
+    html.theme-lime .text-slate-900 {
+        color: hsl(110 55% 16%) !important;
+    }
+    html.theme-lime .bg-slate-200 {
+        background-color: hsl(110 35% 88%) !important;
+    }
+    html.theme-lime .border-slate-300,
+    html.theme-lime .border-slate-200 {
+        border-color: hsl(110 35% 85%) !important;
+    }
+    html.theme-lime .border-slate-600,
+    html.theme-lime .border-slate-700 {
+        border-color: hsl(110 35% 32%) !important;
+    }
+    html.theme-lime.dark .text-slate-700 {
+        color: hsl(110 40% 68%) !important;
+    }
+    html.theme-lime.dark .text-slate-600 {
+        color: hsl(110 40% 63%) !important;
+    }
+    html.theme-lime.dark .text-slate-300 {
+        color: hsl(110 40% 75%) !important;
+    }
+    html.theme-lime.dark .text-slate-900 {
+        color: hsl(110 80% 94%) !important;
+    }
+    html.theme-lime.dark .bg-slate-200 {
+        background-color: hsl(110 35% 25%) !important;
+    }
+    html.theme-lime.dark .border-slate-300,
+    html.theme-lime.dark .border-slate-200 {
+        border-color: hsl(110 35% 35%) !important;
+    }
+    html.theme-lime.dark .border-slate-600,
+    html.theme-lime.dark .border-slate-700 {
+        border-color: hsl(110 40% 68%) !important;
+    }
+    /* ============================================ 
+       PHONE ENTRY COLORS — designation, department, extension
+       ============================================ */
+    /* NAVY — Phone Entry Colors */
+    html.theme-navy .text-slate-500 {
+        color: hsl(215 25% 42%) !important;
+    }
+    html.theme-navy .text-slate-400 {
+        color: hsl(215 25% 50%) !important;
+    }
+    html.theme-navy .text-blue-600 {
+        color: hsl(220 90% 35%) !important;
+    }
+    html.theme-navy .text-blue-400 {
+        color: hsl(220 90% 50%) !important;
+    }
+    html.theme-navy .text-orange-600 {
+        color: hsl(220 90% 35%) !important;
+    }
+    html.theme-navy .text-orange-400 {
+        color: hsl(220 90% 50%) !important;
+    }
+    html.theme-navy .bg-orange-100 {
+        background-color: hsl(220 40% 92%) !important;
+    }
+    html.theme-navy .bg-orange-50 {
+        background-color: hsl(220 50% 96%) !important;
+    }
+    html.theme-navy.dark .text-slate-500 {
+        color: hsl(215 25% 52%) !important;
+    }
+    html.theme-navy.dark .text-slate-400 {
+        color: hsl(215 30% 70%) !important;
+    }
+    html.theme-navy.dark .text-blue-600 {
+        color: hsl(220 90% 45%) !important;
+    }
+    html.theme-navy.dark .text-blue-400 {
+        color: hsl(220 90% 60%) !important;
+    }
+    html.theme-navy.dark .text-orange-600 {
+        color: hsl(220 90% 45%) !important;
+    }
+    html.theme-navy.dark .text-orange-400 {
+        color: hsl(220 90% 60%) !important;
+    }
+    html.theme-navy.dark .bg-orange-100 {
+        background-color: hsl(220 40% 25%) !important;
+    }
+    html.theme-navy.dark .bg-orange-50 {
+        background-color: hsl(220 50% 12%) !important;
+    }
+    /* EMERALD — Phone Entry Colors */
+    html.theme-emerald .text-slate-500 {
+        color: hsl(160 35% 42%) !important;
+    }
+    html.theme-emerald .text-slate-400 {
+        color: hsl(160 35% 55%) !important;
+    }
+    html.theme-emerald .text-blue-600 {
+        color: hsl(160 84% 39%) !important;
+    }
+    html.theme-emerald .text-blue-400 {
+        color: hsl(160 84% 55%) !important;
+    }
+    html.theme-emerald .text-orange-600 {
+        color: hsl(160 84% 39%) !important;
+    }
+    html.theme-emerald .text-orange-400 {
+        color: hsl(160 84% 55%) !important;
+    }
+    html.theme-emerald .bg-orange-100 {
+        background-color: hsl(160 50% 92%) !important;
+    }
+    html.theme-emerald .bg-orange-50 {
+        background-color: hsl(160 60% 96%) !important;
+    }
+    html.theme-emerald.dark .text-slate-500 {
+        color: hsl(160 35% 52%) !important;
+    }
+    html.theme-emerald.dark .text-slate-400 {
+        color: hsl(160 40% 72%) !important;
+    }
+    html.theme-emerald.dark .text-blue-600 {
+        color: hsl(160 84% 45%) !important;
+    }
+    html.theme-emerald.dark .text-blue-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-emerald.dark .text-orange-600 {
+        color: hsl(160 84% 45%) !important;
+    }
+    html.theme-emerald.dark .text-orange-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-emerald.dark .bg-orange-100 {
+        background-color: hsl(160 50% 25%) !important;
+    }
+    html.theme-emerald.dark .bg-orange-50 {
+        background-color: hsl(160 60% 12%) !important;
+    }
+    /* PURPLE — Phone Entry Colors */
+    html.theme-purple .text-slate-500 {
+        color: hsl(280 35% 48%) !important;
+    }
+    html.theme-purple .text-slate-400 {
+        color: hsl(280 35% 58%) !important;
+    }
+    html.theme-purple .text-blue-600 {
+        color: hsl(280 91% 48%) !important;
+    }
+    html.theme-purple .text-blue-400 {
+        color: hsl(280 91% 60%) !important;
+    }
+    html.theme-purple .text-orange-600 {
+        color: hsl(280 91% 48%) !important;
+    }
+    html.theme-purple .text-orange-400 {
+        color: hsl(280 91% 60%) !important;
+    }
+    html.theme-purple .bg-orange-100 {
+        background-color: hsl(280 65% 94%) !important;
+    }
+    html.theme-purple .bg-orange-50 {
+        background-color: hsl(280 70% 97%) !important;
+    }
+    html.theme-purple.dark .text-slate-500 {
+        color: hsl(280 35% 55%) !important;
+    }
+    html.theme-purple.dark .text-slate-400 {
+        color: hsl(280 40% 75%) !important;
+    }
+    html.theme-purple.dark .text-blue-600 {
+        color: hsl(280 91% 50%) !important;
+    }
+    html.theme-purple.dark .text-blue-400 {
+        color: hsl(280 91% 65%) !important;
+    }
+    html.theme-purple.dark .text-orange-600 {
+        color: hsl(280 91% 50%) !important;
+    }
+    html.theme-purple.dark .text-orange-400 {
+        color: hsl(280 91% 65%) !important;
+    }
+    html.theme-purple.dark .bg-orange-100 {
+        background-color: hsl(280 65% 28%) !important;
+    }
+    html.theme-purple.dark .bg-orange-50 {
+        background-color: hsl(280 70% 14%) !important;
+    }
+    /* ROSE — Phone Entry Colors */
+    html.theme-rose .text-slate-500 {
+        color: hsl(350 40% 48%) !important;
+    }
+    html.theme-rose .text-slate-400 {
+        color: hsl(350 40% 58%) !important;
+    }
+    html.theme-rose .text-blue-600 {
+        color: hsl(350 89% 60%) !important;
+    }
+    html.theme-rose .text-blue-400 {
+        color: hsl(350 89% 72%) !important;
+    }
+    html.theme-rose .text-orange-600 {
+        color: hsl(350 89% 60%) !important;
+    }
+    html.theme-rose .text-orange-400 {
+        color: hsl(350 89% 72%) !important;
+    }
+    html.theme-rose .bg-orange-100 {
+        background-color: hsl(350 80% 94%) !important;
+    }
+    html.theme-rose .bg-orange-50 {
+        background-color: hsl(350 85% 97%) !important;
+    }
+    html.theme-rose.dark .text-slate-500 {
+        color: hsl(350 40% 55%) !important;
+    }
+    html.theme-rose.dark .text-slate-400 {
+        color: hsl(350 40% 75%) !important;
+    }
+    html.theme-rose.dark .text-blue-600 {
+        color: hsl(350 89% 60%) !important;
+    }
+    html.theme-rose.dark .text-blue-400 {
+        color: hsl(350 89% 72%) !important;
+    }
+    html.theme-rose.dark .text-orange-600 {
+        color: hsl(350 89% 60%) !important;
+    }
+    html.theme-rose.dark .text-orange-400 {
+        color: hsl(350 89% 72%) !important;
+    }
+    html.theme-rose.dark .bg-orange-100 {
+        background-color: hsl(350 80% 28%) !important;
+    }
+    html.theme-rose.dark .bg-orange-50 {
+        background-color: hsl(350 85% 14%) !important;
+    }
+    /* AMBER — Phone Entry Colors */
+    html.theme-amber .text-slate-500 {
+        color: hsl(35 55% 45%) !important;
+    }
+    html.theme-amber .text-slate-400 {
+        color: hsl(35 55% 55%) !important;
+    }
+    html.theme-amber .text-blue-600 {
+        color: hsl(40 96% 53%) !important;
+    }
+    html.theme-amber .text-blue-400 {
+        color: hsl(40 96% 65%) !important;
+    }
+    html.theme-amber .text-orange-600 {
+        color: hsl(40 96% 53%) !important;
+    }
+    html.theme-amber .text-orange-400 {
+        color: hsl(40 96% 65%) !important;
+    }
+    html.theme-amber .bg-orange-100 {
+        background-color: hsl(38 100% 94%) !important;
+    }
+    html.theme-amber .bg-orange-50 {
+        background-color: hsl(38 100% 97%) !important;
+    }
+    html.theme-amber.dark .text-slate-500 {
+        color: hsl(35 50% 52%) !important;
+    }
+    html.theme-amber.dark .text-slate-400 {
+        color: hsl(35 50% 72%) !important;
+    }
+    html.theme-amber.dark .text-blue-600 {
+        color: hsl(40 96% 55%) !important;
+    }
+    html.theme-amber.dark .text-blue-400 {
+        color: hsl(40 96% 68%) !important;
+    }
+    html.theme-amber.dark .text-orange-600 {
+        color: hsl(40 96% 55%) !important;
+    }
+    html.theme-amber.dark .text-orange-400 {
+        color: hsl(40 96% 68%) !important;
+    }
+    html.theme-amber.dark .bg-orange-100 {
+        background-color: hsl(38 100% 25%) !important;
+    }
+    html.theme-amber.dark .bg-orange-50 {
+        background-color: hsl(38 100% 12%) !important;
+    }
+    /* SLATE — Phone Entry Colors */
+    html.theme-slate .text-slate-500 {
+        color: hsl(215 20% 42%) !important;
+    }
+    html.theme-slate .text-slate-400 {
+        color: hsl(215 20% 52%) !important;
+    }
+    html.theme-slate .text-blue-600 {
+        color: hsl(215 60% 45%) !important;
+    }
+    html.theme-slate .text-blue-400 {
+        color: hsl(215 60% 60%) !important;
+    }
+    html.theme-slate .text-orange-600 {
+        color: hsl(215 60% 45%) !important;
+    }
+    html.theme-slate .text-orange-400 {
+        color: hsl(215 60% 60%) !important;
+    }
+    html.theme-slate .bg-orange-100 {
+        background-color: hsl(215 35% 92%) !important;
+    }
+    html.theme-slate .bg-orange-50 {
+        background-color: hsl(215 50% 96%) !important;
+    }
+    html.theme-slate.dark .text-slate-500 {
+        color: hsl(215 20% 50%) !important;
+    }
+    html.theme-slate.dark .text-slate-400 {
+        color: hsl(215 25% 70%) !important;
+    }
+    html.theme-slate.dark .text-blue-600 {
+        color: hsl(215 60% 50%) !important;
+    }
+    html.theme-slate.dark .text-blue-400 {
+        color: hsl(215 60% 65%) !important;
+    }
+    html.theme-slate.dark .text-orange-600 {
+        color: hsl(215 60% 50%) !important;
+    }
+    html.theme-slate.dark .text-orange-400 {
+        color: hsl(215 60% 65%) !important;
+    }
+    html.theme-slate.dark .bg-orange-100 {
+        background-color: hsl(215 35% 25%) !important;
+    }
+    html.theme-slate.dark .bg-orange-50 {
+        background-color: hsl(215 50% 12%) !important;
+    }
+    /* TEAL — Phone Entry Colors */
+    html.theme-teal .text-slate-500 {
+        color: hsl(180 30% 42%) !important;
+    }
+    html.theme-teal .text-slate-400 {
+        color: hsl(180 30% 52%) !important;
+    }
+    html.theme-teal .text-blue-600 {
+        color: hsl(180 85% 40%) !important;
+    }
+    html.theme-teal .text-blue-400 {
+        color: hsl(180 85% 55%) !important;
+    }
+    html.theme-teal .text-orange-600 {
+        color: hsl(180 85% 40%) !important;
+    }
+    html.theme-teal .text-orange-400 {
+        color: hsl(180 85% 55%) !important;
+    }
+    html.theme-teal .bg-orange-100 {
+        background-color: hsl(180 40% 92%) !important;
+    }
+    html.theme-teal .bg-orange-50 {
+        background-color: hsl(180 50% 96%) !important;
+    }
+    html.theme-teal.dark .text-slate-500 {
+        color: hsl(180 30% 50%) !important;
+    }
+    html.theme-teal.dark .text-slate-400 {
+        color: hsl(180 35% 70%) !important;
+    }
+    html.theme-teal.dark .text-blue-600 {
+        color: hsl(180 85% 48%) !important;
+    }
+    html.theme-teal.dark .text-blue-400 {
+        color: hsl(180 85% 62%) !important;
+    }
+    html.theme-teal.dark .text-orange-600 {
+        color: hsl(180 85% 48%) !important;
+    }
+    html.theme-teal.dark .text-orange-400 {
+        color: hsl(180 85% 62%) !important;
+    }
+    html.theme-teal.dark .bg-orange-100 {
+        background-color: hsl(180 40% 25%) !important;
+    }
+    html.theme-teal.dark .bg-orange-50 {
+        background-color: hsl(180 50% 12%) !important;
+    }
+    /* INDIGO — Phone Entry Colors */
+    html.theme-indigo .text-slate-500 {
+        color: hsl(225 30% 45%) !important;
+    }
+    html.theme-indigo .text-slate-400 {
+        color: hsl(225 30% 55%) !important;
+    }
+    html.theme-indigo .text-blue-600 {
+        color: hsl(225 90% 45%) !important;
+    }
+    html.theme-indigo .text-blue-400 {
+        color: hsl(225 90% 60%) !important;
+    }
+    html.theme-indigo .text-orange-600 {
+        color: hsl(225 90% 45%) !important;
+    }
+    html.theme-indigo .text-orange-400 {
+        color: hsl(225 90% 60%) !important;
+    }
+    html.theme-indigo .bg-orange-100 {
+        background-color: hsl(225 40% 93%) !important;
+    }
+    html.theme-indigo .bg-orange-50 {
+        background-color: hsl(225 50% 96%) !important;
+    }
+    html.theme-indigo.dark .text-slate-500 {
+        color: hsl(225 30% 52%) !important;
+    }
+    html.theme-indigo.dark .text-slate-400 {
+        color: hsl(225 35% 72%) !important;
+    }
+    html.theme-indigo.dark .text-blue-600 {
+        color: hsl(225 90% 52%) !important;
+    }
+    html.theme-indigo.dark .text-blue-400 {
+        color: hsl(225 90% 65%) !important;
+    }
+    html.theme-indigo.dark .text-orange-600 {
+        color: hsl(225 90% 52%) !important;
+    }
+    html.theme-indigo.dark .text-orange-400 {
+        color: hsl(225 90% 65%) !important;
+    }
+    html.theme-indigo.dark .bg-orange-100 {
+        background-color: hsl(225 40% 27%) !important;
+    }
+    html.theme-indigo.dark .bg-orange-50 {
+        background-color: hsl(225 50% 14%) !important;
+    }
+    /* CORAL — Phone Entry Colors */
+    html.theme-coral .text-slate-500 {
+        color: hsl(10 30% 45%) !important;
+    }
+    html.theme-coral .text-slate-400 {
+        color: hsl(10 30% 55%) !important;
+    }
+    html.theme-coral .text-blue-600 {
+        color: hsl(10 85% 48%) !important;
+    }
+    html.theme-coral .text-blue-400 {
+        color: hsl(10 85% 62%) !important;
+    }
+    html.theme-coral .text-orange-600 {
+        color: hsl(10 85% 48%) !important;
+    }
+    html.theme-coral .text-orange-400 {
+        color: hsl(10 85% 62%) !important;
+    }
+    html.theme-coral .bg-orange-100 {
+        background-color: hsl(10 40% 93%) !important;
+    }
+    html.theme-coral .bg-orange-50 {
+        background-color: hsl(10 50% 96%) !important;
+    }
+    html.theme-coral.dark .text-slate-500 {
+        color: hsl(10 30% 52%) !important;
+    }
+    html.theme-coral.dark .text-slate-400 {
+        color: hsl(10 35% 72%) !important;
+    }
+    html.theme-coral.dark .text-blue-600 {
+        color: hsl(10 85% 56%) !important;
+    }
+    html.theme-coral.dark .text-blue-400 {
+        color: hsl(10 85% 68%) !important;
+    }
+    html.theme-coral.dark .text-orange-600 {
+        color: hsl(10 85% 56%) !important;
+    }
+    html.theme-coral.dark .text-orange-400 {
+        color: hsl(10 85% 68%) !important;
+    }
+    html.theme-coral.dark .bg-orange-100 {
+        background-color: hsl(10 40% 27%) !important;
+    }
+    html.theme-coral.dark .bg-orange-50 {
+        background-color: hsl(10 50% 14%) !important;
+    }
+    /* LIME — Phone Entry Colors */
+    html.theme-lime .text-slate-500 {
+        color: hsl(110 30% 40%) !important;
+    }
+    html.theme-lime .text-slate-400 {
+        color: hsl(110 30% 50%) !important;
+    }
+    html.theme-lime .text-blue-600 {
+        color: hsl(110 85% 40%) !important;
+    }
+    html.theme-lime .text-blue-400 {
+        color: hsl(110 85% 55%) !important;
+    }
+    html.theme-lime .text-orange-600 {
+        color: hsl(110 85% 40%) !important;
+    }
+    html.theme-lime .text-orange-400 {
+        color: hsl(110 85% 55%) !important;
+    }
+    html.theme-lime .bg-orange-100 {
+        background-color: hsl(110 40% 92%) !important;
+    }
+    html.theme-lime .bg-orange-50 {
+        background-color: hsl(110 50% 96%) !important;
+    }
+    html.theme-lime.dark .text-slate-500 {
+        color: hsl(110 30% 48%) !important;
+    }
+    html.theme-lime.dark .text-slate-400 {
+        color: hsl(110 35% 68%) !important;
+    }
+    html.theme-lime.dark .text-blue-600 {
+        color: hsl(110 85% 48%) !important;
+    }
+    html.theme-lime.dark .text-blue-400 {
+        color: hsl(110 85% 60%) !important;
+    }
+    html.theme-lime.dark .text-orange-600 {
+        color: hsl(110 85% 48%) !important;
+    }
+    html.theme-lime.dark .text-orange-400 {
+        color: hsl(110 85% 60%) !important;
+    }
+    html.theme-lime.dark .bg-orange-100 {
+        background-color: hsl(110 40% 25%) !important;
+    }
+    html.theme-lime.dark .bg-orange-50 {
+        background-color: hsl(110 50% 12%) !important;
+    }
+    /* ============================================ 
+       EMPLOYEE/DEPARTMENT BADGES & HEADER COLORS
+       ============================================ */
+    /* NAVY — Employee & Department Badge Colors */
+    html.theme-navy .text-green-600 {
+        color: hsl(160 84% 35%) !important;
+    }
+    html.theme-navy .text-green-400 {
+        color: hsl(160 84% 55%) !important;
+    }
+    html.theme-navy .text-green-700 {
+        color: hsl(160 84% 30%) !important;
+    }
+    html.theme-navy .bg-green-50 {
+        background-color: hsl(160 50% 96%) !important;
+    }
+    html.theme-navy .bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-navy .bg-green-100 {
+        background-color: hsl(160 50% 92%) !important;
+    }
+    html.theme-navy .bg-green-50\/50 {
+        background-color: hsl(160 50% 96% / 0.5) !important;
+    }
+    html.theme-navy .bg-green-900\/10 {
+        background-color: hsl(160 84% 25% / 0.1) !important;
+    }
+    html.theme-navy .border-green-300,
+    html.theme-navy .border-green-600 {
+        border-color: hsl(160 84% 39%) !important;
+    }
+    html.theme-navy .border-green-400,
+    html.theme-navy .border-green-500,
+    html.theme-navy .dark\:border-green-600 {
+        border-color: hsl(160 84% 45%) !important;
+    }
+    html.theme-navy .border-green-200,
+    html.theme-navy .border-green-800 {
+        border-color: hsl(160 50% 85%) !important;
+    }
+    html.theme-navy.dark .text-green-600 {
+        color: hsl(160 84% 50%) !important;
+    }
+    html.theme-navy.dark .text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-navy.dark .text-green-700 {
+        color: hsl(160 84% 55%) !important;
+    }
+    html.theme-navy.dark .bg-green-50 {
+        background-color: hsl(160 50% 20%) !important;
+    }
+    html.theme-navy.dark .bg-green-900\/20 {
+        background-color: hsl(160 84% 50% / 0.2) !important;
+    }
+    html.theme-navy.dark .bg-green-100 {
+        background-color: hsl(160 50% 25%) !important;
+    }
+    html.theme-navy.dark .bg-green-50\/50 {
+        background-color: hsl(160 50% 20% / 0.5) !important;
+    }
+    html.theme-navy.dark .bg-green-900\/10 {
+        background-color: hsl(160 84% 50% / 0.1) !important;
+    }
+    html.theme-navy.dark .border-green-300,
+    html.theme-navy.dark .border-green-600 {
+        border-color: hsl(160 84% 50%) !important;
+    }
+    html.theme-navy.dark .border-green-400,
+    html.theme-navy.dark .border-green-500 {
+        border-color: hsl(160 84% 55%) !important;
+    }
+    html.theme-navy.dark .dark\:border-green-600 {
+        border-color: hsl(160 84% 50%) !important;
+    }
+    html.theme-navy.dark .border-green-200,
+    html.theme-navy.dark .dark\:border-green-800 {
+        border-color: hsl(160 50% 35%) !important;
+    }
+    html.theme-navy.dark .dark\:bg-green-900 {
+        background-color: hsl(160 84% 22%) !important;
+    }
+    html.theme-navy.dark .dark\:bg-green-100 {
+        background-color: hsl(160 50% 28%) !important;
+    }
+    html.theme-navy.dark .dark\:text-green-200 {
+        color: hsl(160 84% 75%) !important;
+    }
+    html.theme-navy.dark .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-navy .header-gradient {
+        background: linear-gradient(135deg, hsl(220 90% 45%) 0%, hsl(220 90% 35%) 100%) !important;
+    }
+    html.theme-navy.dark .header-gradient {
+        background: linear-gradient(135deg, hsl(220 90% 35%) 0%, hsl(220 90% 25%) 100%) !important;
+    }
+    /* EMERALD — Employee & Department Badge Colors */
+    html.theme-emerald .text-green-600 {
+        color: hsl(160 84% 39%) !important;
+    }
+    html.theme-emerald .text-green-400 {
+        color: hsl(160 84% 55%) !important;
+    }
+    html.theme-emerald .text-green-700 {
+        color: hsl(160 84% 35%) !important;
+    }
+    html.theme-emerald .bg-green-50 {
+        background-color: hsl(160 50% 96%) !important;
+    }
+    html.theme-emerald .bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-emerald .bg-green-100 {
+        background-color: hsl(160 50% 92%) !important;
+    }
+    html.theme-emerald .bg-green-50\/50 {
+        background-color: hsl(160 50% 96% / 0.5) !important;
+    }
+    html.theme-emerald .bg-green-900\/10 {
+        background-color: hsl(160 84% 25% / 0.1) !important;
+    }
+    html.theme-emerald .border-green-300,
+    html.theme-emerald .border-green-600 {
+        border-color: hsl(160 84% 39%) !important;
+    }
+    html.theme-emerald .border-green-400,
+    html.theme-emerald .border-green-500 {
+        border-color: hsl(160 84% 50%) !important;
+    }
+    html.theme-emerald .border-green-200,
+    html.theme-emerald .dark\:border-green-800 {
+        border-color: hsl(160 50% 85%) !important;
+    }
+    html.theme-emerald.dark .text-green-600 {
+        color: hsl(160 84% 55%) !important;
+    }
+    html.theme-emerald.dark .text-green-400 {
+        color: hsl(160 84% 65%) !important;
+    }
+    html.theme-emerald.dark .text-green-700 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-emerald.dark .bg-green-50 {
+        background-color: hsl(160 50% 20%) !important;
+    }
+    html.theme-emerald.dark .bg-green-900\/20 {
+        background-color: hsl(160 84% 55% / 0.2) !important;
+    }
+    html.theme-emerald.dark .bg-green-100 {
+        background-color: hsl(160 50% 25%) !important;
+    }
+    html.theme-emerald.dark .bg-green-50\/50 {
+        background-color: hsl(160 50% 20% / 0.5) !important;
+    }
+    html.theme-emerald.dark .bg-green-900\/10 {
+        background-color: hsl(160 84% 55% / 0.1) !important;
+    }
+    html.theme-emerald.dark .border-green-300,
+    html.theme-emerald.dark .border-green-600 {
+        border-color: hsl(160 84% 55%) !important;
+    }
+    html.theme-emerald.dark .border-green-400,
+    html.theme-emerald.dark .border-green-500 {
+        border-color: hsl(160 84% 60%) !important;
+    }
+    html.theme-emerald.dark .dark\:border-green-600 {
+        border-color: hsl(160 84% 55%) !important;
+    }
+    html.theme-emerald.dark .border-green-200,
+    html.theme-emerald.dark .dark\:border-green-800 {
+        border-color: hsl(160 50% 35%) !important;
+    }
+    html.theme-emerald.dark .dark\:bg-green-900 {
+        background-color: hsl(160 84% 22%) !important;
+    }
+    html.theme-emerald.dark .dark\:bg-green-100 {
+        background-color: hsl(160 50% 28%) !important;
+    }
+    html.theme-emerald.dark .dark\:text-green-200 {
+        color: hsl(160 84% 75%) !important;
+    }
+    html.theme-emerald.dark .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-emerald .header-gradient {
+        background: linear-gradient(135deg, hsl(160 84% 50%) 0%, hsl(160 84% 39%) 100%) !important;
+    }
+    html.theme-emerald.dark .header-gradient {
+        background: linear-gradient(135deg, hsl(160 84% 39%) 0%, hsl(160 84% 28%) 100%) !important;
+    }
+    /* PURPLE — Employee & Department Badge Colors */
+    html.theme-purple .text-green-600 {
+        color: hsl(280 91% 48%) !important;
+    }
+    html.theme-purple .text-green-400 {
+        color: hsl(280 91% 60%) !important;
+    }
+    html.theme-purple .text-green-700 {
+        color: hsl(280 91% 42%) !important;
+    }
+    html.theme-purple .bg-green-50 {
+        background-color: hsl(280 70% 96%) !important;
+    }
+    html.theme-purple .bg-green-900\/20 {
+        background-color: hsl(280 91% 25% / 0.2) !important;
+    }
+    html.theme-purple .bg-green-100 {
+        background-color: hsl(280 70% 92%) !important;
+    }
+    html.theme-purple .bg-green-50\/50 {
+        background-color: hsl(280 70% 96% / 0.5) !important;
+    }
+    html.theme-purple .bg-green-900\/10 {
+        background-color: hsl(280 91% 25% / 0.1) !important;
+    }
+    html.theme-purple .border-green-300,
+    html.theme-purple .border-green-600 {
+        border-color: hsl(280 91% 48%) !important;
+    }
+    html.theme-purple .border-green-400,
+    html.theme-purple .border-green-500 {
+        border-color: hsl(280 91% 55%) !important;
+    }
+    html.theme-purple .border-green-200,
+    html.theme-purple .dark\:border-green-800 {
+        border-color: hsl(280 70% 85%) !important;
+    }
+    html.theme-purple.dark .text-green-600 {
+        color: hsl(280 91% 60%) !important;
+    }
+    html.theme-purple.dark .text-green-400 {
+        color: hsl(280 91% 70%) !important;
+    }
+    html.theme-purple.dark .text-green-700 {
+        color: hsl(280 91% 65%) !important;
+    }
+    html.theme-purple.dark .bg-green-50 {
+        background-color: hsl(280 70% 22%) !important;
+    }
+    html.theme-purple.dark .bg-green-900\/20 {
+        background-color: hsl(280 91% 60% / 0.2) !important;
+    }
+    html.theme-purple.dark .bg-green-100 {
+        background-color: hsl(280 70% 28%) !important;
+    }
+    html.theme-purple.dark .bg-green-50\/50 {
+        background-color: hsl(280 70% 22% / 0.5) !important;
+    }
+    html.theme-purple.dark .bg-green-900\/10 {
+        background-color: hsl(280 91% 60% / 0.1) !important;
+    }
+    html.theme-purple.dark .border-green-300,
+    html.theme-purple.dark .border-green-600 {
+        border-color: hsl(280 91% 60%) !important;
+    }
+    html.theme-purple.dark .border-green-400,
+    html.theme-purple.dark .border-green-500 {
+        border-color: hsl(280 91% 65%) !important;
+    }
+    html.theme-purple.dark .dark\:border-green-600 {
+        border-color: hsl(280 91% 60%) !important;
+    }
+    html.theme-purple.dark .border-green-200,
+    html.theme-purple.dark .dark\:border-green-800 {
+        border-color: hsl(280 70% 38%) !important;
+    }
+    html.theme-purple.dark .dark\:bg-green-900 {
+        background-color: hsl(280 91% 22%) !important;
+    }
+    html.theme-purple.dark .dark\:bg-green-100 {
+        background-color: hsl(280 70% 28%) !important;
+    }
+    html.theme-purple.dark .dark\:text-green-200 {
+        color: hsl(280 91% 75%) !important;
+    }
+    html.theme-purple.dark .dark\:text-green-400 {
+        color: hsl(280 91% 60%) !important;
+    }
+    html.theme-purple .header-gradient {
+        background: linear-gradient(135deg, hsl(280 91% 58%) 0%, hsl(280 91% 48%) 100%) !important;
+    }
+    html.theme-purple.dark .header-gradient {
+        background: linear-gradient(135deg, hsl(280 91% 48%) 0%, hsl(280 91% 35%) 100%) !important;
+    }
+    /* ROSE — Employee & Department Badge Colors */
+    html.theme-rose .text-green-600 {
+        color: hsl(350 89% 60%) !important;
+    }
+    html.theme-rose .text-green-400 {
+        color: hsl(350 89% 72%) !important;
+    }
+    html.theme-rose .text-green-700 {
+        color: hsl(350 89% 55%) !important;
+    }
+    html.theme-rose .bg-green-50 {
+        background-color: hsl(350 85% 96%) !important;
+    }
+    html.theme-rose .bg-green-900\/20 {
+        background-color: hsl(350 89% 25% / 0.2) !important;
+    }
+    html.theme-rose .bg-green-100 {
+        background-color: hsl(350 85% 92%) !important;
+    }
+    html.theme-rose .bg-green-50\/50 {
+        background-color: hsl(350 85% 96% / 0.5) !important;
+    }
+    html.theme-rose .bg-green-900\/10 {
+        background-color: hsl(350 89% 25% / 0.1) !important;
+    }
+    html.theme-rose .border-green-300,
+    html.theme-rose .border-green-600 {
+        border-color: hsl(350 89% 60%) !important;
+    }
+    html.theme-rose .border-green-400,
+    html.theme-rose .border-green-500 {
+        border-color: hsl(350 89% 68%) !important;
+    }
+    html.theme-rose .border-green-200,
+    html.theme-rose .dark\:border-green-800 {
+        border-color: hsl(350 85% 85%) !important;
+    }
+    html.theme-rose.dark .text-green-600 {
+        color: hsl(350 89% 72%) !important;
+    }
+    html.theme-rose.dark .text-green-400 {
+        color: hsl(350 89% 78%) !important;
+    }
+    html.theme-rose.dark .text-green-700 {
+        color: hsl(350 89% 75%) !important;
+    }
+    html.theme-rose.dark .bg-green-50 {
+        background-color: hsl(350 85% 22%) !important;
+    }
+    html.theme-rose.dark .bg-green-900\/20 {
+        background-color: hsl(350 89% 72% / 0.2) !important;
+    }
+    html.theme-rose.dark .bg-green-100 {
+        background-color: hsl(350 85% 28%) !important;
+    }
+    html.theme-rose.dark .bg-green-50\/50 {
+        background-color: hsl(350 85% 22% / 0.5) !important;
+    }
+    html.theme-rose.dark .bg-green-900\/10 {
+        background-color: hsl(350 89% 72% / 0.1) !important;
+    }
+    html.theme-rose.dark .border-green-300,
+    html.theme-rose.dark .border-green-600 {
+        border-color: hsl(350 89% 72%) !important;
+    }
+    html.theme-rose.dark .border-green-400,
+    html.theme-rose.dark .border-green-500 {
+        border-color: hsl(350 89% 75%) !important;
+    }
+    html.theme-rose.dark .dark\:border-green-600 {
+        border-color: hsl(350 89% 72%) !important;
+    }
+    html.theme-rose.dark .border-green-200,
+    html.theme-rose.dark .dark\:border-green-800 {
+        border-color: hsl(350 85% 38%) !important;
+    }
+    html.theme-rose.dark .dark\:bg-green-900 {
+        background-color: hsl(350 89% 22%) !important;
+    }
+    html.theme-rose.dark .dark\:bg-green-100 {
+        background-color: hsl(350 70% 28%) !important;
+    }
+    html.theme-rose.dark .dark\:text-green-200 {
+        color: hsl(350 89% 75%) !important;
+    }
+    html.theme-rose.dark .dark\:text-green-400 {
+        color: hsl(350 89% 60%) !important;
+    }
+    }
+    html.theme-rose .header-gradient {
+        background: linear-gradient(135deg, hsl(350 89% 70%) 0%, hsl(350 89% 60%) 100%) !important;
+    }
+    html.theme-rose.dark .header-gradient {
+        background: linear-gradient(135deg, hsl(350 89% 60%) 0%, hsl(350 89% 45%) 100%) !important;
+    }
+    /* AMBER — Employee & Department Badge Colors */
+    html.theme-amber .text-green-600 {
+        color: hsl(40 96% 53%) !important;
+    }
+    html.theme-amber .text-green-400 {
+        color: hsl(40 96% 65%) !important;
+    }
+    html.theme-amber .text-green-700 {
+        color: hsl(40 96% 48%) !important;
+    }
+    html.theme-amber .bg-green-50 {
+        background-color: hsl(38 100% 96%) !important;
+    }
+    html.theme-amber .bg-green-900\/20 {
+        background-color: hsl(40 96% 25% / 0.2) !important;
+    }
+    html.theme-amber .bg-green-100 {
+        background-color: hsl(38 100% 92%) !important;
+    }
+    html.theme-amber .bg-green-50\/50 {
+        background-color: hsl(38 100% 96% / 0.5) !important;
+    }
+    html.theme-amber .bg-green-900\/10 {
+        background-color: hsl(40 96% 25% / 0.1) !important;
+    }
+    html.theme-amber .border-green-300,
+    html.theme-amber .border-green-600 {
+        border-color: hsl(40 96% 53%) !important;
+    }
+    html.theme-amber .border-green-400,
+    html.theme-amber .border-green-500 {
+        border-color: hsl(40 96% 60%) !important;
+    }
+    html.theme-amber .border-green-200,
+    html.theme-amber .dark\:border-green-800 {
+        border-color: hsl(38 100% 85%) !important;
+    }
+    html.theme-amber.dark .text-green-600 {
+        color: hsl(40 96% 65%) !important;
+    }
+    html.theme-amber.dark .text-green-400 {
+        color: hsl(40 96% 72%) !important;
+    }
+    html.theme-amber.dark .text-green-700 {
+        color: hsl(40 96% 68%) !important;
+    }
+    html.theme-amber.dark .bg-green-50 {
+        background-color: hsl(38 100% 20%) !important;
+    }
+    html.theme-amber.dark .bg-green-900\/20 {
+        background-color: hsl(40 96% 65% / 0.2) !important;
+    }
+    html.theme-amber.dark .bg-green-100 {
+        background-color: hsl(38 100% 26%) !important;
+    }
+    html.theme-amber.dark .bg-green-50\/50 {
+        background-color: hsl(38 100% 20% / 0.5) !important;
+    }
+    html.theme-amber.dark .bg-green-900\/10 {
+        background-color: hsl(40 96% 65% / 0.1) !important;
+    }
+    html.theme-amber.dark .border-green-300,
+    html.theme-amber.dark .border-green-600 {
+        border-color: hsl(40 96% 65%) !important;
+    }
+    html.theme-amber.dark .border-green-400,
+    html.theme-amber.dark .border-green-500 {
+        border-color: hsl(40 96% 70%) !important;
+    }
+    html.theme-amber.dark .dark\:border-green-600 {
+        border-color: hsl(40 96% 65%) !important;
+    }
+    html.theme-amber.dark .border-green-200,
+    html.theme-amber.dark .dark\:border-green-800 {
+        border-color: hsl(38 100% 36%) !important;
+    }
+    html.theme-amber.dark .dark\:bg-green-900 {
+        background-color: hsl(40 96% 22%) !important;
+    }
+    html.theme-amber.dark .dark\:bg-green-100 {
+        background-color: hsl(38 70% 28%) !important;
+    }
+    html.theme-amber.dark .dark\:text-green-200 {
+        color: hsl(40 96% 75%) !important;
+    }
+    html.theme-amber.dark .dark\:text-green-400 {
+        color: hsl(40 96% 60%) !important;
+    }
+    html.theme-amber .header-gradient {
+        background: linear-gradient(135deg, hsl(40 96% 63%) 0%, hsl(40 96% 53%) 100%) !important;
+    }
+    html.theme-amber.dark .header-gradient {
+        background: linear-gradient(135deg, hsl(40 96% 53%) 0%, hsl(40 96% 40%) 100%) !important;
+    }
+    /* SLATE — Employee & Department Badge Colors */
+    html.theme-slate .text-green-600 {
+        color: hsl(215 60% 45%) !important;
+    }
+    html.theme-slate .text-green-400 {
+        color: hsl(215 60% 60%) !important;
+    }
+    html.theme-slate .text-green-700 {
+        color: hsl(215 60% 40%) !important;
+    }
+    html.theme-slate .bg-green-50 {
+        background-color: hsl(215 50% 96%) !important;
+    }
+    html.theme-slate .bg-green-900\/20 {
+        background-color: hsl(215 60% 25% / 0.2) !important;
+    }
+    html.theme-slate .bg-green-100 {
+        background-color: hsl(215 50% 92%) !important;
+    }
+    html.theme-slate .bg-green-50\/50 {
+        background-color: hsl(215 50% 96% / 0.5) !important;
+    }
+    html.theme-slate .bg-green-900\/10 {
+        background-color: hsl(215 60% 25% / 0.1) !important;
+    }
+    html.theme-slate .border-green-300,
+    html.theme-slate .border-green-600 {
+        border-color: hsl(215 60% 45%) !important;
+    }
+    html.theme-slate .border-green-400,
+    html.theme-slate .border-green-500 {
+        border-color: hsl(215 60% 55%) !important;
+    }
+    html.theme-slate .border-green-200,
+    html.theme-slate .dark\:border-green-800 {
+        border-color: hsl(215 50% 85%) !important;
+    }
+    html.theme-slate.dark .text-green-600 {
+        color: hsl(215 60% 55%) !important;
+    }
+    html.theme-slate.dark .text-green-400 {
+        color: hsl(215 60% 68%) !important;
+    }
+    html.theme-slate.dark .text-green-700 {
+        color: hsl(215 60% 62%) !important;
+    }
+    html.theme-slate.dark .bg-green-50 {
+        background-color: hsl(215 50% 20%) !important;
+    }
+    html.theme-slate.dark .bg-green-900\/20 {
+        background-color: hsl(215 60% 55% / 0.2) !important;
+    }
+    html.theme-slate.dark .bg-green-100 {
+        background-color: hsl(215 50% 26%) !important;
+    }
+    html.theme-slate.dark .bg-green-50\/50 {
+        background-color: hsl(215 50% 20% / 0.5) !important;
+    }
+    html.theme-slate.dark .bg-green-900\/10 {
+        background-color: hsl(215 60% 55% / 0.1) !important;
+    }
+    html.theme-slate.dark .border-green-300,
+    html.theme-slate.dark .border-green-600 {
+        border-color: hsl(215 60% 55%) !important;
+    }
+    html.theme-slate.dark .border-green-400,
+    html.theme-slate.dark .border-green-500 {
+        border-color: hsl(215 60% 62%) !important;
+    }
+    html.theme-slate.dark .dark\:border-green-600 {
+        border-color: hsl(215 60% 55%) !important;
+    }
+    html.theme-slate.dark .border-green-200,
+    html.theme-slate.dark .dark\:border-green-800 {
+        border-color: hsl(215 50% 35%) !important;
+    }
+    html.theme-slate.dark .dark\:bg-green-900 {
+        background-color: hsl(215 60% 22%) !important;
+    }
+    html.theme-slate.dark .dark\:bg-green-100 {
+        background-color: hsl(215 50% 28%) !important;
+    }
+    html.theme-slate.dark .dark\:text-green-200 {
+        color: hsl(215 60% 75%) !important;
+    }
+    html.theme-slate.dark .dark\:text-green-400 {
+        color: hsl(215 60% 60%) !important;
+    }
+    html.theme-slate.dark .dark\:bg-green-900 {
+        background-color: hsl(160 84% 22%) !important;
+    }
+    html.theme-slate.dark .dark\:bg-green-100 {
+        background-color: hsl(160 50% 28%) !important;
+    }
+    html.theme-slate.dark .dark\:text-green-200 {
+        color: hsl(160 84% 75%) !important;
+    }
+    html.theme-slate.dark .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-slate .header-gradient {
+        background: linear-gradient(135deg, hsl(215 60% 55%) 0%, hsl(215 60% 45%) 100%) !important;
+    }
+    html.theme-slate.dark .header-gradient {
+        background: linear-gradient(135deg, hsl(215 60% 45%) 0%, hsl(215 60% 32%) 100%) !important;
+    }
+    /* ============================================ 
+       EMPLOYEE/DEPARTMENT BADGES — NEW THEMES
+       ============================================ */
+    /* TEAL — Employee & Department Badge Colors */
+    html.theme-teal .text-green-600 {
+        color: hsl(180 85% 40%) !important;
+    }
+    html.theme-teal .text-green-400 {
+        color: hsl(180 85% 55%) !important;
+    }
+    html.theme-teal .text-green-700 {
+        color: hsl(180 85% 35%) !important;
+    }
+    html.theme-teal .bg-green-50 {
+        color: hsl(180 60% 96%) !important;
+    }
+    html.theme-teal .dark\:bg-green-900\/20 {
+        background-color: hsl(180 95% 25% / 0.2) !important;
+    }
+    html.theme-teal .dark\:text-green-400 {
+        color: hsl(180 85% 55%) !important;
+    }
+    html.theme-teal .bg-green-100 {
+        background-color: hsl(180 60% 92%) !important;
+    }
+    html.theme-teal .dark\:bg-green-100 {
+        background-color: hsl(180 60% 28%) !important;
+    }
+    html.theme-teal .bg-green-50\/50 {
+        background-color: hsl(180 60% 96% / 0.5) !important;
+    }
+    html.theme-teal.dark .bg-green-50\/50 {
+        background-color: hsl(180 60% 22% / 0.5) !important;
+    }
+    html.theme-teal .dark\:bg-green-900\/10 {
+        background-color: hsl(180 95% 25% / 0.1) !important;
+    }
+    html.theme-teal.dark .border-green-300,
+    html.theme-teal.dark .border-green-600 {
+        border-color: hsl(180 85% 55%) !important;
+    }
+    html.theme-teal.dark .border-green-400,
+    html.theme-teal.dark .border-green-500 {
+        border-color: hsl(180 85% 60%) !important;
+    }
+    html.theme-teal.dark .dark\:border-green-600 {
+        border-color: hsl(180 85% 55%) !important;
+    }
+    html.theme-teal.dark .border-green-200,
+    html.theme-teal.dark .dark\:border-green-800 {
+        border-color: hsl(180 60% 35%) !important;
+    }
+    html.theme-teal.dark .dark\:bg-green-900 {
+        background-color: hsl(180 85% 22%) !important;
+    }
+    html.theme-teal.dark .dark\:bg-green-100 {
+        background-color: hsl(180 60% 28%) !important;
+    }
+    html.theme-teal.dark .dark\:text-green-200 {
+        color: hsl(180 85% 75%) !important;
+    }
+    html.theme-teal.dark .dark\:text-green-400 {
+        color: hsl(180 85% 60%) !important;
+    }
+    html.theme-teal .header-gradient {
+        background: linear-gradient(135deg, hsl(180 85% 45%) 0%, hsl(180 85% 35%) 100%) !important;
+    }
+    html.theme-teal.dark .header-gradient {
+        background: linear-gradient(135deg, hsl(180 85% 35%) 0%, hsl(180 85% 22%) 100%) !important;
+    }
+    /* INDIGO — Employee & Department Badge Colors */
+    html.theme-indigo .text-green-600 {
+        color: hsl(225 90% 45%) !important;
+    }
+    html.theme-indigo .text-green-400 {
+        color: hsl(225 90% 60%) !important;
+    }
+    html.theme-indigo .text-green-700 {
+        color: hsl(225 90% 40%) !important;
+    }
+    html.theme-indigo .bg-green-50 {
+        background-color: hsl(225 70% 96%) !important;
+    }
+    html.theme-indigo .dark\:bg-green-900\/20 {
+        background-color: hsl(225 90% 25% / 0.2) !important;
+    }
+    html.theme-indigo .dark\:text-green-400 {
+        color: hsl(225 90% 60%) !important;
+    }
+    html.theme-indigo .bg-green-100 {
+        background-color: hsl(225 70% 92%) !important;
+    }
+    html.theme-indigo .dark\:bg-green-100 {
+        background-color: hsl(225 70% 28%) !important;
+    }
+    html.theme-indigo .bg-green-50\/50 {
+        background-color: hsl(225 70% 96% / 0.5) !important;
+    }
+    html.theme-indigo.dark .bg-green-50\/50 {
+        background-color: hsl(225 70% 22% / 0.5) !important;
+    }
+    html.theme-indigo .dark\:bg-green-900\/10 {
+        background-color: hsl(225 90% 25% / 0.1) !important;
+    }
+    html.theme-indigo.dark .border-green-300,
+    html.theme-indigo.dark .border-green-600 {
+        border-color: hsl(225 90% 60%) !important;
+    }
+    html.theme-indigo.dark .border-green-400,
+    html.theme-indigo.dark .border-green-500 {
+        border-color: hsl(225 90% 65%) !important;
+    }
+    html.theme-indigo.dark .dark\:border-green-600 {
+        border-color: hsl(225 90% 60%) !important;
+    }
+    html.theme-indigo.dark .border-green-200,
+    html.theme-indigo.dark .dark\:border-green-800 {
+        border-color: hsl(225 70% 38%) !important;
+    }
+    html.theme-indigo.dark .dark\:bg-green-900 {
+        background-color: hsl(225 90% 22%) !important;
+    }
+    html.theme-indigo.dark .dark\:bg-green-100 {
+        background-color: hsl(225 70% 28%) !important;
+    }
+    html.theme-indigo.dark .dark\:text-green-200 {
+        color: hsl(225 90% 75%) !important;
+    }
+    html.theme-indigo.dark .dark\:text-green-400 {
+        color: hsl(225 90% 60%) !important;
+    }
+    html.theme-indigo .header-gradient {
+        background: linear-gradient(135deg, hsl(225 90% 50%) 0%, hsl(225 90% 40%) 100%) !important;
+    }
+    html.theme-indigo.dark .header-gradient {
+        background: linear-gradient(135deg, hsl(225 90% 40%) 0%, hsl(225 90% 27%) 100%) !important;
+    }
+    /* CORAL — Employee & Department Badge Colors */
+    html.theme-coral .text-green-600 {
+        color: hsl(10 85% 48%) !important;
+    }
+    html.theme-coral .text-green-400 {
+        color: hsl(10 85% 62%) !important;
+    }
+    html.theme-coral .text-green-700 {
+        color: hsl(10 85% 43%) !important;
+    }
+    html.theme-coral .bg-green-50 {
+        background-color: hsl(10 70% 96%) !important;
+    }
+    html.theme-coral .dark\:bg-green-900\/20 {
+        background-color: hsl(10 88% 25% / 0.2) !important;
+    }
+    html.theme-coral .dark\:text-green-400 {
+        color: hsl(10 85% 62%) !important;
+    }
+    html.theme-coral .bg-green-100 {
+        background-color: hsl(10 70% 92%) !important;
+    }
+    html.theme-coral .dark\:bg-green-100 {
+        background-color: hsl(10 70% 28%) !important;
+    }
+    html.theme-coral .bg-green-50\/50 {
+        background-color: hsl(10 70% 96% / 0.5) !important;
+    }
+    html.theme-coral.dark .bg-green-50\/50 {
+        background-color: hsl(10 70% 22% / 0.5) !important;
+    }
+    html.theme-coral .dark\:bg-green-900\/10 {
+        background-color: hsl(10 88% 25% / 0.1) !important;
+    }
+    html.theme-coral.dark .border-green-300,
+    html.theme-coral.dark .border-green-600 {
+        border-color: hsl(10 85% 62%) !important;
+    }
+    html.theme-coral.dark .border-green-400,
+    html.theme-coral.dark .border-green-500 {
+        border-color: hsl(10 85% 68%) !important;
+    }
+    html.theme-coral.dark .dark\:border-green-600 {
+        border-color: hsl(10 85% 62%) !important;
+    }
+    html.theme-coral.dark .border-green-200,
+    html.theme-coral.dark .dark\:border-green-800 {
+        border-color: hsl(10 70% 38%) !important;
+    }
+    html.theme-coral.dark .dark\:bg-green-900 {
+        background-color: hsl(10 85% 22%) !important;
+    }
+    html.theme-coral.dark .dark\:bg-green-100 {
+        background-color: hsl(10 70% 28%) !important;
+    }
+    html.theme-coral.dark .dark\:text-green-200 {
+        color: hsl(10 85% 75%) !important;
+    }
+    html.theme-coral.dark .dark\:text-green-400 {
+        color: hsl(10 85% 60%) !important;
+    }
+    html.theme-coral .header-gradient {
+        background: linear-gradient(135deg, hsl(10 85% 52%) 0%, hsl(10 85% 42%) 100%) !important;
+    }
+    html.theme-coral.dark .header-gradient {
+        background: linear-gradient(135deg, hsl(10 85% 42%) 0%, hsl(10 85% 29%) 100%) !important;
+    }
+    /* LIME — Employee & Department Badge Colors */
+    html.theme-lime .text-green-600 {
+        color: hsl(110 85% 40%) !important;
+    }
+    html.theme-lime .text-green-400 {
+        color: hsl(110 85% 55%) !important;
+    }
+    html.theme-lime .text-green-700 {
+        color: hsl(110 85% 35%) !important;
+    }
+    html.theme-lime .bg-green-50 {
+        background-color: hsl(110 60% 96%) !important;
+    }
+    html.theme-lime .dark\:bg-green-900\/20 {
+        background-color: hsl(110 90% 25% / 0.2) !important;
+    }
+    html.theme-lime .dark\:text-green-400 {
+        color: hsl(110 85% 55%) !important;
+    }
+    html.theme-lime .bg-green-100 {
+        background-color: hsl(110 60% 92%) !important;
+    }
+    html.theme-lime .dark\:bg-green-100 {
+        background-color: hsl(110 60% 28%) !important;
+    }
+    html.theme-lime .bg-green-50\/50 {
+        background-color: hsl(110 60% 96% / 0.5) !important;
+    }
+    html.theme-lime.dark .bg-green-50\/50 {
+        background-color: hsl(110 60% 22% / 0.5) !important;
+    }
+    html.theme-lime .dark\:bg-green-900\/10 {
+        background-color: hsl(110 90% 25% / 0.1) !important;
+    }
+    html.theme-lime.dark .border-green-300,
+    html.theme-lime.dark .border-green-600 {
+        border-color: hsl(110 85% 55%) !important;
+    }
+    html.theme-lime.dark .border-green-400,
+    html.theme-lime.dark .border-green-500 {
+        border-color: hsl(110 85% 60%) !important;
+    }
+    html.theme-lime.dark .dark\:border-green-600 {
+        border-color: hsl(110 85% 55%) !important;
+    }
+    html.theme-lime.dark .border-green-200,
+    html.theme-lime.dark .dark\:border-green-800 {
+        border-color: hsl(110 60% 35%) !important;
+    }
+    html.theme-lime.dark .dark\:bg-green-900 {
+        background-color: hsl(110 85% 22%) !important;
+    }
+    html.theme-lime.dark .dark\:bg-green-100 {
+        background-color: hsl(110 60% 28%) !important;
+    }
+    html.theme-lime.dark .dark\:text-green-200 {
+        color: hsl(110 85% 75%) !important;
+    }
+    html.theme-lime.dark .dark\:text-green-400 {
+        color: hsl(110 85% 60%) !important;
+    }
+    html.theme-lime .header-gradient {
+        background: linear-gradient(135deg, hsl(110 85% 45%) 0%, hsl(110 85% 35%) 100%) !important;
+    }
+    html.theme-lime.dark .header-gradient {
+        background: linear-gradient(135deg, hsl(110 85% 35%) 0%, hsl(110 85% 22%) 100%) !important;
+    }
+    /* ============================================ 
+       OfficeCard theme-specific color overrides
+       ============================================ */
+    /* NAVY — blue card border & badge colors */
+    html.theme-navy .border-orange-400,
+    html.theme-navy .dark\:border-orange-500 {
+        --tw-border-opacity: 1;
+        border-color: hsl(220 90% 35% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-navy .hover\:border-orange-500,
+    html.theme-navy .dark\:hover\:border-orange-400 {
+        border-color: hsl(220 90% 50% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-navy .bg-orange-50 {
+        background-color: hsl(220 40% 96%) !important;
+    }
+    html.theme-navy .dark\:bg-orange-900\/20 {
+        background-color: hsl(220 90% 20% / 0.2) !important;
+    }
+    html.theme-navy .text-orange-600 {
+        color: hsl(220 90% 35%) !important;
+    }
+    html.theme-navy .dark\:text-orange-400 {
+        color: hsl(220 90% 60%) !important;
+    }
+    html.theme-navy .bg-green-50 {
+        background-color: hsl(150 55% 96%) !important;
+    }
+    html.theme-navy .dark\:bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-navy .text-green-600 {
+        color: hsl(160 84% 35%) !important;
+    }
+    html.theme-navy .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-navy .bg-blue-50 {
+        background-color: hsl(210 60% 96%) !important;
+    }
+    html.theme-navy .dark\:bg-blue-900\/20 {
+        background-color: hsl(210 90% 20% / 0.2) !important;
+    }
+    html.theme-navy .text-blue-600 {
+        color: hsl(210 90% 35%) !important;
+    }
+    html.theme-navy .dark\:text-blue-400 {
+        color: hsl(210 90% 60%) !important;
+    }
+    html.theme-navy .border-orange-100 {
+        border-color: hsl(220 40% 92%) !important;
+    }
+    html.theme-navy .dark\:bg-orange-900 {
+        background-color: hsl(220 90% 20%) !important;
+    }
+    html.theme-navy .bg-orange-100 {
+        background-color: hsl(220 40% 92%) !important;
+    }
+    /* EMERALD — green card border & badge colors */
+    html.theme-emerald .border-orange-400,
+    html.theme-emerald .dark\:border-orange-500 {
+        border-color: hsl(160 84% 39% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-emerald .hover\:border-orange-500,
+    html.theme-emerald .dark\:hover\:border-orange-400 {
+        border-color: hsl(160 84% 55% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-emerald .bg-orange-50 {
+        background-color: hsl(155 60% 96%) !important;
+    }
+    html.theme-emerald .dark\:bg-orange-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-emerald .text-orange-600 {
+        color: hsl(160 84% 39%) !important;
+    }
+    html.theme-emerald .dark\:text-orange-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-emerald .bg-green-50 {
+        background-color: hsl(160 50% 95%) !important;
+    }
+    html.theme-emerald .dark\:bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-emerald .text-green-600 {
+        color: hsl(160 84% 39%) !important;
+    }
+    html.theme-emerald .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-emerald .bg-blue-50 {
+        background-color: hsl(200 60% 96%) !important;
+    }
+    html.theme-emerald .dark\:bg-blue-900\/20 {
+        background-color: hsl(200 90% 25% / 0.2) !important;
+    }
+    html.theme-emerald .text-blue-600 {
+        color: hsl(200 90% 40%) !important;
+    }
+    html.theme-emerald .dark\:text-blue-400 {
+        color: hsl(200 90% 65%) !important;
+    }
+    html.theme-emerald .border-orange-100 {
+        border-color: hsl(155 60% 92%) !important;
+    }
+    html.theme-emerald .dark\:bg-orange-900 {
+        background-color: hsl(160 84% 25%) !important;
+    }
+    html.theme-emerald .bg-orange-100 {
+        background-color: hsl(155 60% 92%) !important;
+    }
+    /* PURPLE — purple card border & badge colors */
+    html.theme-purple .border-orange-400,
+    html.theme-purple .dark\:border-orange-500 {
+        border-color: hsl(280 91% 48% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-purple .hover\:border-orange-500,
+    html.theme-purple .dark\:hover\:border-orange-400 {
+        border-color: hsl(280 91% 60% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-purple .bg-orange-50 {
+        background-color: hsl(270 70% 96%) !important;
+    }
+    html.theme-purple .dark\:bg-orange-900\/20 {
+        background-color: hsl(280 91% 25% / 0.2) !important;
+    }
+    html.theme-purple .text-orange-600 {
+        color: hsl(280 91% 48%) !important;
+    }
+    html.theme-purple .dark\:text-orange-400 {
+        color: hsl(280 91% 65%) !important;
+    }
+    html.theme-purple .bg-green-50 {
+        background-color: hsl(160 50% 96%) !important;
+    }
+    html.theme-purple .dark\:bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-purple .text-green-600 {
+        color: hsl(160 84% 35%) !important;
+    }
+    html.theme-purple .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-purple .bg-blue-50 {
+        background-color: hsl(240 60% 96%) !important;
+    }
+    html.theme-purple .dark\:bg-blue-900\/20 {
+        background-color: hsl(240 90% 25% / 0.2) !important;
+    }
+    html.theme-purple .text-blue-600 {
+        color: hsl(240 90% 40%) !important;
+    }
+    html.theme-purple .dark\:text-blue-400 {
+        color: hsl(240 90% 65%) !important;
+    }
+    html.theme-purple .border-orange-100 {
+        border-color: hsl(270 70% 92%) !important;
+    }
+    html.theme-purple .dark\:bg-orange-900 {
+        background-color: hsl(280 91% 25%) !important;
+    }
+    html.theme-purple .bg-orange-100 {
+        background-color: hsl(270 70% 92%) !important;
+    }
+    /* ROSE — pink card border & badge colors */
+    html.theme-rose .border-orange-400,
+    html.theme-rose .dark\:border-orange-500 {
+        border-color: hsl(350 89% 60% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-rose .hover\:border-orange-500,
+    html.theme-rose .dark\:hover\:border-orange-400 {
+        border-color: hsl(350 89% 72% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-rose .bg-orange-50 {
+        background-color: hsl(340 80% 96%) !important;
+    }
+    html.theme-rose .dark\:bg-orange-900\/20 {
+        background-color: hsl(350 89% 25% / 0.2) !important;
+    }
+    html.theme-rose .text-orange-600 {
+        color: hsl(350 89% 60%) !important;
+    }
+    html.theme-rose .dark\:text-orange-400 {
+        color: hsl(350 89% 72%) !important;
+    }
+    html.theme-rose .bg-green-50 {
+        background-color: hsl(160 50% 96%) !important;
+    }
+    html.theme-rose .dark\:bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-rose .text-green-600 {
+        color: hsl(160 84% 35%) !important;
+    }
+    html.theme-rose .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-rose .bg-blue-50 {
+        background-color: hsl(210 60% 96%) !important;
+    }
+    html.theme-rose .dark\:bg-blue-900\/20 {
+        background-color: hsl(210 90% 25% / 0.2) !important;
+    }
+    html.theme-rose .text-blue-600 {
+        color: hsl(210 90% 40%) !important;
+    }
+    html.theme-rose .dark\:text-blue-400 {
+        color: hsl(210 90% 65%) !important;
+    }
+    html.theme-rose .border-orange-100 {
+        border-color: hsl(340 80% 92%) !important;
+    }
+    html.theme-rose .dark\:bg-orange-900 {
+        background-color: hsl(350 89% 25%) !important;
+    }
+    html.theme-rose .bg-orange-100 {
+        background-color: hsl(340 80% 92%) !important;
+    }
+    /* AMBER — orange card border & badge colors */
+    html.theme-amber .border-orange-400,
+    html.theme-amber .dark\:border-orange-500 {
+        border-color: hsl(40 96% 53% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-amber .hover\:border-orange-500,
+    html.theme-amber .dark\:hover\:border-orange-400 {
+        border-color: hsl(40 96% 65% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-amber .bg-orange-50 {
+        background-color: hsl(38 100% 96%) !important;
+    }
+    html.theme-amber .dark\:bg-orange-900\/20 {
+        background-color: hsl(40 96% 25% / 0.2) !important;
+    }
+    html.theme-amber .text-orange-600 {
+        color: hsl(40 96% 53%) !important;
+    }
+    html.theme-amber .dark\:text-orange-400 {
+        color: hsl(40 96% 65%) !important;
+    }
+    html.theme-amber .bg-green-50 {
+        background-color: hsl(160 50% 96%) !important;
+    }
+    html.theme-amber .dark\:bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-amber .text-green-600 {
+        color: hsl(160 84% 35%) !important;
+    }
+    html.theme-amber .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-amber .bg-blue-50 {
+        background-color: hsl(210 60% 96%) !important;
+    }
+    html.theme-amber .dark\:bg-blue-900\/20 {
+        background-color: hsl(210 90% 25% / 0.2) !important;
+    }
+    html.theme-amber .text-blue-600 {
+        color: hsl(210 90% 40%) !important;
+    }
+    html.theme-amber .dark\:text-blue-400 {
+        color: hsl(210 90% 65%) !important;
+    }
+    html.theme-amber .border-orange-100 {
+        border-color: hsl(38 100% 92%) !important;
+    }
+    html.theme-amber .dark\:bg-orange-900 {
+        background-color: hsl(40 96% 25%) !important;
+    }
+    html.theme-amber .bg-orange-100 {
+        background-color: hsl(38 100% 92%) !important;
+    }
+    /* SLATE — gray card border & badge colors */
+    html.theme-slate .border-orange-400,
+    html.theme-slate .dark\:border-orange-500 {
+        border-color: hsl(215 60% 45% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-slate .hover\:border-orange-500,
+    html.theme-slate .dark\:hover\:border-orange-400 {
+        border-color: hsl(215 60% 60% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-slate .bg-orange-50 {
+        background-color: hsl(210 60% 96%) !important;
+    }
+    html.theme-slate .dark\:bg-orange-900\/20 {
+        background-color: hsl(215 60% 25% / 0.2) !important;
+    }
+    html.theme-slate .text-orange-600 {
+        color: hsl(215 60% 45%) !important;
+    }
+    html.theme-slate .dark\:text-orange-400 {
+        color: hsl(215 60% 65%) !important;
+    }
+    html.theme-slate .bg-green-50 {
+        background-color: hsl(160 50% 96%) !important;
+    }
+    html.theme-slate .dark\:bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-slate .text-green-600 {
+        color: hsl(160 84% 35%) !important;
+    }
+    html.theme-slate .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-slate .bg-blue-50 {
+        background-color: hsl(210 60% 96%) !important;
+    }
+    html.theme-slate .dark\:bg-blue-900\/20 {
+        background-color: hsl(210 90% 25% / 0.2) !important;
+    }
+    html.theme-slate .text-blue-600 {
+        color: hsl(210 90% 40%) !important;
+    }
+    html.theme-slate .dark\:text-blue-400 {
+        color: hsl(210 90% 65%) !important;
+    }
+    html.theme-slate .border-orange-100 {
+        border-color: hsl(210 60% 92%) !important;
+    }
+    html.theme-slate .dark\:bg-orange-900 {
+        background-color: hsl(215 60% 25%) !important;
+    }
+    html.theme-slate .bg-orange-100 {
+        background-color: hsl(210 60% 92%) !important;
+    }
+    /* ============================================
+       NEW THEMES OfficeCard COLORS
+       ============================================ */
+    /* TEAL — teal card border & badge colors */
+    html.theme-teal .border-orange-400,
+    html.theme-teal .dark\:border-orange-500 {
+        border-color: hsl(180 85% 40% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-teal .hover\:border-orange-500,
+    html.theme-teal .dark\:hover\:border-orange-400 {
+        border-color: hsl(180 85% 55% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-teal .bg-orange-50 {
+        background-color: hsl(180 60% 96%) !important;
+    }
+    html.theme-teal .dark\:bg-orange-900\/20 {
+        background-color: hsl(180 85% 25% / 0.2) !important;
+    }
+    html.theme-teal .text-orange-600 {
+        color: hsl(180 85% 40%) !important;
+    }
+    html.theme-teal .dark\:text-orange-400 {
+        color: hsl(180 85% 55%) !important;
+    }
+    html.theme-teal .bg-green-50 {
+        background-color: hsl(160 60% 96%) !important;
+    }
+    html.theme-teal .dark\:bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-teal .text-green-600 {
+        color: hsl(160 84% 35%) !important;
+    }
+    html.theme-teal .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-teal .bg-blue-50 {
+        background-color: hsl(180 60% 96%) !important;
+    }
+    html.theme-teal .dark\:bg-blue-900\/20 {
+        background-color: hsl(180 85% 25% / 0.2) !important;
+    }
+    html.theme-teal .text-blue-600 {
+        color: hsl(180 85% 40%) !important;
+    }
+    html.theme-teal .dark\:text-blue-400 {
+        color: hsl(180 85% 55%) !important;
+    }
+    html.theme-teal .border-orange-100 {
+        border-color: hsl(180 60% 92%) !important;
+    }
+    html.theme-teal .dark\:bg-orange-900 {
+        background-color: hsl(180 85% 25%) !important;
+    }
+    html.theme-teal .bg-orange-100 {
+        background-color: hsl(180 60% 92%) !important;
+    }
+    /* INDIGO — indigo card border & badge colors */
+    html.theme-indigo .border-orange-400,
+    html.theme-indigo .dark\:border-orange-500 {
+        border-color: hsl(225 90% 45% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-indigo .hover\:border-orange-500,
+    html.theme-indigo .dark\:hover\:border-orange-400 {
+        border-color: hsl(225 90% 60% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-indigo .bg-orange-50 {
+        background-color: hsl(220 70% 96%) !important;
+    }
+    html.theme-indigo .dark\:bg-orange-900\/20 {
+        background-color: hsl(225 90% 25% / 0.2) !important;
+    }
+    html.theme-indigo .text-orange-600 {
+        color: hsl(225 90% 45%) !important;
+    }
+    html.theme-indigo .dark\:text-orange-400 {
+        color: hsl(225 90% 60%) !important;
+    }
+    html.theme-indigo .bg-green-50 {
+        background-color: hsl(160 60% 96%) !important;
+    }
+    html.theme-indigo .dark\:bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-indigo .text-green-600 {
+        color: hsl(160 84% 35%) !important;
+    }
+    html.theme-indigo .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-indigo .bg-blue-50 {
+        background-color: hsl(220 70% 96%) !important;
+    }
+    html.theme-indigo .dark\:bg-blue-900\/20 {
+        background-color: hsl(225 90% 25% / 0.2) !important;
+    }
+    html.theme-indigo .text-blue-600 {
+        color: hsl(225 90% 45%) !important;
+    }
+    html.theme-indigo .dark\:text-blue-400 {
+        color: hsl(225 90% 60%) !important;
+    }
+    html.theme-indigo .border-orange-100 {
+        border-color: hsl(220 70% 92%) !important;
+    }
+    html.theme-indigo .dark\:bg-orange-900 {
+        background-color: hsl(225 90% 25%) !important;
+    }
+    html.theme-indigo .bg-orange-100 {
+        background-color: hsl(220 70% 92%) !important;
+    }
+    /* CORAL — coral card border & badge colors */
+    html.theme-coral .border-orange-400,
+    html.theme-coral .dark\:border-orange-500 {
+        border-color: hsl(10 85% 48% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-coral .hover\:border-orange-500,
+    html.theme-coral .dark\:hover\:border-orange-400 {
+        border-color: hsl(10 85% 62% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-coral .bg-orange-50 {
+        background-color: hsl(5 70% 96%) !important;
+    }
+    html.theme-coral .dark\:bg-orange-900\/20 {
+        background-color: hsl(10 85% 25% / 0.2) !important;
+    }
+    html.theme-coral .text-orange-600 {
+        color: hsl(10 85% 48%) !important;
+    }
+    html.theme-coral .dark\:text-orange-400 {
+        color: hsl(10 85% 62%) !important;
+    }
+    html.theme-coral .bg-green-50 {
+        background-color: hsl(160 60% 96%) !important;
+    }
+    html.theme-coral .dark\:bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-coral .text-green-600 {
+        color: hsl(160 84% 35%) !important;
+    }
+    html.theme-coral .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-coral .bg-blue-50 {
+        background-color: hsl(5 70% 96%) !important;
+    }
+    html.theme-coral .dark\:bg-blue-900\/20 {
+        background-color: hsl(10 85% 25% / 0.2) !important;
+    }
+    html.theme-coral .text-blue-600 {
+        color: hsl(10 85% 48%) !important;
+    }
+    html.theme-coral .dark\:text-blue-400 {
+        color: hsl(10 85% 62%) !important;
+    }
+    html.theme-coral .border-orange-100 {
+        border-color: hsl(5 70% 92%) !important;
+    }
+    html.theme-coral .dark\:bg-orange-900 {
+        background-color: hsl(10 85% 25%) !important;
+    }
+    html.theme-coral .bg-orange-100 {
+        background-color: hsl(5 70% 92%) !important;
+    }
+    /* LIME — lime card border & badge colors */
+    html.theme-lime .border-orange-400,
+    html.theme-lime .dark\:border-orange-500 {
+        border-color: hsl(110 85% 40% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-lime .hover\:border-orange-500,
+    html.theme-lime .dark\:hover\:border-orange-400 {
+        border-color: hsl(110 85% 55% / var(--tw-border-opacity)) !important;
+    }
+    html.theme-lime .bg-orange-50 {
+        background-color: hsl(105 60% 96%) !important;
+    }
+    html.theme-lime .dark\:bg-orange-900\/20 {
+        background-color: hsl(110 85% 25% / 0.2) !important;
+    }
+    html.theme-lime .text-orange-600 {
+        color: hsl(110 85% 40%) !important;
+    }
+    html.theme-lime .dark\:text-orange-400 {
+        color: hsl(110 85% 55%) !important;
+    }
+    html.theme-lime .bg-green-50 {
+        background-color: hsl(160 60% 96%) !important;
+    }
+    html.theme-lime .dark\:bg-green-900\/20 {
+        background-color: hsl(160 84% 25% / 0.2) !important;
+    }
+    html.theme-lime .text-green-600 {
+        color: hsl(160 84% 35%) !important;
+    }
+    html.theme-lime .dark\:text-green-400 {
+        color: hsl(160 84% 60%) !important;
+    }
+    html.theme-lime .bg-blue-50 {
+        background-color: hsl(105 60% 96%) !important;
+    }
+    html.theme-lime .dark\:bg-blue-900\/20 {
+        background-color: hsl(110 85% 25% / 0.2) !important;
+    }
+    html.theme-lime .text-blue-600 {
+        color: hsl(110 85% 40%) !important;
+    }
+    html.theme-lime .dark\:text-blue-400 {
+        color: hsl(110 85% 55%) !important;
+    }
+    html.theme-lime .border-orange-100 {
+        border-color: hsl(105 60% 92%) !important;
+    }
+    html.theme-lime .dark\:bg-orange-900 {
+        background-color: hsl(110 85% 25%) !important;
+    }
+    html.theme-lime .bg-orange-100 {
+        background-color: hsl(105 60% 92%) !important;
+    }
+
+
+@layer utilities {
+    .card-border-left {
+        border-left: 4px solid hsl(var(--card-border-left));
+    }
+    .header-gradient {
+        background: linear-gradient(135deg, hsl(var(--header-gradient-from)), hsl(var(--header-gradient-to)));
+    }
+    .text-extension {
+        color: hsl(var(--extension));
+    }
+    /* =====================================================
+       BORDER COLOR OVERRIDES FOR ALL THEMES
+       ===================================================== */
+    /* Light mode borders - theme-aware */
+    html.theme-navy .border-slate-300,
+    html.theme-navy .border-slate-200 {
+        border-color: hsl(215 25% 85%) !important;
+    }
+    html.theme-emerald .border-slate-300,
+    html.theme-emerald .border-slate-200 {
+        border-color: hsl(160 35% 85%) !important;
+    }
+    html.theme-purple .border-slate-300,
+    html.theme-purple .border-slate-200 {
+        border-color: hsl(280 35% 87%) !important;
+    }
+    html.theme-rose .border-slate-300,
+    html.theme-rose .border-slate-200 {
+        border-color: hsl(350 35% 87%) !important;
+    }
+    html.theme-amber .border-slate-300,
+    html.theme-amber .border-slate-200 {
+        border-color: hsl(35 70% 87%) !important;
+    }
+    html.theme-slate .border-slate-300,
+    html.theme-slate .border-slate-200 {
+        border-color: hsl(215 25% 85%) !important;
+    }
+    html.theme-teal .border-slate-300,
+    html.theme-teal .border-slate-200 {
+        border-color: hsl(180 35% 85%) !important;
+    }
+    html.theme-indigo .border-slate-300,
+    html.theme-indigo .border-slate-200 {
+        border-color: hsl(225 35% 87%) !important;
+    }
+    html.theme-coral .border-slate-300,
+    html.theme-coral .border-slate-200 {
+        border-color: hsl(10 35% 87%) !important;
+    }
+    html.theme-lime .border-slate-300,
+    html.theme-lime .border-slate-200 {
+        border-color: hsl(110 35% 85%) !important;
+    }
+    
+    /* Dark mode borders - theme-aware */
+    html.theme-navy.dark .border-slate-600,
+    html.theme-navy.dark .border-slate-700 {
+        border-color: hsl(215 25% 35%) !important;
+    }
+    html.theme-emerald.dark .border-slate-600,
+    html.theme-emerald.dark .border-slate-700 {
+        border-color: hsl(160 35% 35%) !important;
+    }
+    html.theme-purple.dark .border-slate-600,
+    html.theme-purple.dark .border-slate-700 {
+        border-color: hsl(280 35% 37%) !important;
+    }
+    html.theme-rose.dark .border-slate-600,
+    html.theme-rose.dark .border-slate-700 {
+        border-color: hsl(350 35% 37%) !important;
+    }
+    html.theme-amber.dark .border-slate-600,
+    html.theme-amber.dark .border-slate-700 {
+        border-color: hsl(35 70% 37%) !important;
+    }
+    html.theme-slate.dark .border-slate-600,
+    html.theme-slate.dark .border-slate-700 {
+        border-color: hsl(215 25% 35%) !important;
+    }
+    html.theme-teal.dark .border-slate-600,
+    html.theme-teal.dark .border-slate-700 {
+        border-color: hsl(180 35% 35%) !important;
+    }
+    html.theme-indigo.dark .border-slate-600,
+    html.theme-indigo.dark .border-slate-700 {
+        border-color: hsl(225 35% 37%) !important;
+    }
+    html.theme-coral.dark .border-slate-600,
+    html.theme-coral.dark .border-slate-700 {
+        border-color: hsl(10 35% 37%) !important;
+    }
+    html.theme-lime.dark .border-slate-600,
+    html.theme-lime.dark .border-slate-700 {
+        border-color: hsl(110 35% 35%) !important;
+    }
+    
+    /* =====================================================
+       EXTENSION BORDER COLORS FOR ALL THEMES
+       ===================================================== */
+    /* Light mode extension borders - theme primary color */
+    html.theme-navy .border-orange-200 {
+        border-color: hsl(220 90% 85%) !important;
+    }
+    html.theme-emerald .border-orange-200 {
+        border-color: hsl(160 85% 88%) !important;
+    }
+    html.theme-purple .border-orange-200 {
+        border-color: hsl(280 91% 90%) !important;
+    }
+    html.theme-rose .border-orange-200 {
+        border-color: hsl(350 90% 90%) !important;
+    }
+    html.theme-amber .border-orange-200 {
+        border-color: hsl(40 100% 90%) !important;
+    }
+    html.theme-slate .border-orange-200 {
+        border-color: hsl(215 60% 88%) !important;
+    }
+    html.theme-teal .border-orange-200 {
+        border-color: hsl(180 95% 88%) !important;
+    }
+    html.theme-indigo .border-orange-200 {
+        border-color: hsl(225 91% 90%) !important;
+    }
+    html.theme-coral .border-orange-200 {
+        border-color: hsl(10 90% 90%) !important;
+    }
+    html.theme-lime .border-orange-200 {
+        border-color: hsl(110 85% 88%) !important;
+    }
+    
+    /* Dark mode extension borders - theme primary color */
+    html.theme-navy.dark .border-orange-800 {
+        border-color: hsl(220 90% 28%) !important;
+    }
+    html.theme-emerald.dark .border-orange-800 {
+        border-color: hsl(160 84% 20%) !important;
+    }
+    html.theme-purple.dark .border-orange-800 {
+        border-color: hsl(280 91% 25%) !important;
+    }
+    html.theme-rose.dark .border-orange-800 {
+        border-color: hsl(350 89% 25%) !important;
+    }
+    html.theme-amber.dark .border-orange-800 {
+        border-color: hsl(40 96% 25%) !important;
+    }
+    html.theme-slate.dark .border-orange-800 {
+        border-color: hsl(215 60% 25%) !important;
+    }
+    html.theme-teal.dark .border-orange-800 {
+        border-color: hsl(180 85% 25%) !important;
+    }
+    html.theme-indigo.dark .border-orange-800 {
+        border-color: hsl(225 90% 27%) !important;
+    }
+    html.theme-coral.dark .border-orange-800 {
+        border-color: hsl(10 85% 25%) !important;
+    }
+    html.theme-lime.dark .border-orange-800 {
+        border-color: hsl(110 85% 25%) !important;
+    }
+    
+    /* Hover borders - theme primary color lighter */
+    html.theme-navy .hover\:border-orange-400 {
+        border-color: hsl(220 90% 50%) !important;
+    }
+    html.theme-emerald .hover\:border-orange-400 {
+        border-color: hsl(160 84% 55%) !important;
+    }
+    html.theme-purple .hover\:border-orange-400 {
+        border-color: hsl(280 91% 60%) !important;
+    }
+    html.theme-rose .hover\:border-orange-400 {
+        border-color: hsl(350 89% 72%) !important;
+    }
+    html.theme-amber .hover\:border-orange-400 {
+        border-color: hsl(40 96% 65%) !important;
+    }
+    html.theme-slate .hover\:border-orange-400 {
+        border-color: hsl(215 60% 60%) !important;
+    }
+    html.theme-teal .hover\:border-orange-400 {
+        border-color: hsl(180 85% 55%) !important;
+    }
+    html.theme-indigo .hover\:border-orange-400 {
+        border-color: hsl(225 90% 60%) !important;
+    }
+    html.theme-coral .hover\:border-orange-400 {
+        border-color: hsl(10 85% 62%) !important;
+    }
+    html.theme-lime .hover\:border-orange-400 {
+        border-color: hsl(110 85% 55%) !important;
+    }
+    
+    /* Dark hover borders */
+    html.theme-navy.dark .dark\:hover\:border-orange-500 {
+        border-color: hsl(220 90% 50%) !important;
+    }
+    html.theme-emerald.dark .dark\:hover\:border-orange-500 {
+        border-color: hsl(160 84% 60%) !important;
+    }
+    html.theme-purple.dark .dark\:hover\:border-orange-500 {
+        border-color: hsl(280 91% 60%) !important;
+    }
+    html.theme-rose.dark .dark\:hover\:border-orange-500 {
+        border-color: hsl(350 89% 72%) !important;
+    }
+    html.theme-amber.dark .dark\:hover\:border-orange-500 {
+        border-color: hsl(40 96% 68%) !important;
+    }
+    html.theme-slate.dark .dark\:hover\:border-orange-500 {
+        border-color: hsl(215 60% 65%) !important;
+    }
+    html.theme-teal.dark .dark\:hover\:border-orange-500 {
+        border-color: hsl(180 85% 55%) !important;
+    }
+    html.theme-indigo.dark .dark\:hover\:border-orange-500 {
+        border-color: hsl(225 90% 60%) !important;
+    }
+    html.theme-coral.dark .dark\:hover\:border-orange-500 {
+        border-color: hsl(10 85% 62%) !important;
+    }
+    html.theme-lime.dark .dark\:hover\:border-orange-500 {
+        border-color: hsl(110 85% 55%) !important;
+    }
+
+    /* Search extension badge - theme aware */
+    html.theme-navy .search-ext-badge {
+        color: hsl(215 80% 35%) !important;
+        background-color: hsl(215 70% 90%) !important;
+    }
+    html.theme-navy.dark .search-ext-badge {
+        color: hsl(215 80% 75%) !important;
+        background-color: hsl(215 50% 25%) !important;
+    }
+    
+    html.theme-emerald .search-ext-badge {
+        color: hsl(160 70% 30%) !important;
+        background-color: hsl(160 60% 88%) !important;
+    }
+    html.theme-emerald.dark .search-ext-badge {
+        color: hsl(160 75% 78%) !important;
+        background-color: hsl(160 50% 20%) !important;
+    }
+    
+    html.theme-purple .search-ext-badge {
+        color: hsl(270 70% 38%) !important;
+        background-color: hsl(270 65% 92%) !important;
+    }
+    html.theme-purple.dark .search-ext-badge {
+        color: hsl(270 75% 80%) !important;
+        background-color: hsl(270 50% 24%) !important;
+    }
+    
+    html.theme-rose .search-ext-badge {
+        color: hsl(340 70% 35%) !important;
+        background-color: hsl(340 65% 92%) !important;
+    }
+    html.theme-rose.dark .search-ext-badge {
+        color: hsl(340 75% 78%) !important;
+        background-color: hsl(340 50% 24%) !important;
+    }
+    
+    html.theme-amber .search-ext-badge {
+        color: hsl(30 75% 32%) !important;
+        background-color: hsl(30 70% 90%) !important;
+    }
+    html.theme-amber.dark .search-ext-badge {
+        color: hsl(30 80% 76%) !important;
+        background-color: hsl(30 50% 22%) !important;
+    }
+    
+    html.theme-slate .search-ext-badge {
+        color: hsl(215 70% 35%) !important;
+        background-color: hsl(215 60% 90%) !important;
+    }
+    html.theme-slate.dark .search-ext-badge {
+        color: hsl(215 70% 75%) !important;
+        background-color: hsl(215 45% 25%) !important;
+    }
+    
+    html.theme-teal .search-ext-badge {
+        color: hsl(180 75% 32%) !important;
+        background-color: hsl(180 70% 92%) !important;
+    }
+    html.theme-teal.dark .search-ext-badge {
+        color: hsl(180 80% 78%) !important;
+        background-color: hsl(180 50% 22%) !important;
+    }
+    
+    html.theme-indigo .search-ext-badge {
+        color: hsl(240 75% 40%) !important;
+        background-color: hsl(240 75% 94%) !important;
+    }
+    html.theme-indigo.dark .search-ext-badge {
+        color: hsl(240 80% 80%) !important;
+        background-color: hsl(240 50% 26%) !important;
+    }
+    
+    html.theme-coral .search-ext-badge {
+        color: hsl(12 75% 38%) !important;
+        background-color: hsl(12 80% 94%) !important;
+    }
+    html.theme-coral.dark .search-ext-badge {
+        color: hsl(12 80% 76%) !important;
+        background-color: hsl(12 50% 22%) !important;
+    }
+    
+    html.theme-lime .search-ext-badge {
+        color: hsl(110 65% 32%) !important;
+        background-color: hsl(110 70% 92%) !important;
+    }
+    html.theme-lime.dark .search-ext-badge {
+        color: hsl(110 75% 76%) !important;
+        background-color: hsl(110 50% 20%) !important;
+    }
+
+    /* ===== Themed scrollbars (uses primary color from active theme) ===== */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: hsl(var(--primary) / 0.6) hsl(var(--muted) / 0.3);
+    }
+    *::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    *::-webkit-scrollbar-track {
+        background: hsl(var(--muted) / 0.3);
+        border-radius: 8px;
+    }
+    *::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+        border-radius: 8px;
+        border: 2px solid hsl(var(--background));
+    }
+    *::-webkit-scrollbar-thumb:hover {
+        background: hsl(var(--primary));
+    }
+    *::-webkit-scrollbar-corner {
+        background: hsl(var(--muted) / 0.3);
+    }
+}
+/* Admin / Sub-admin mobile compaction */
+@media (max-width: 640px) {
+  .admin-shell { font-size: 13px; }
+  .admin-shell h2 { font-size: 1rem; line-height: 1.25rem; }
+  .admin-shell h3 { font-size: 0.875rem; line-height: 1.2rem; }
+  .admin-shell h4 { font-size: 0.8125rem; line-height: 1.15rem; }
+  .admin-shell .text-3xl { font-size: 1.125rem; line-height: 1.4rem; }
+  .admin-shell .text-2xl { font-size: 1rem; line-height: 1.3rem; }
+  .admin-shell .text-xl { font-size: 0.95rem; line-height: 1.25rem; }
+  .admin-shell .text-lg { font-size: 0.875rem; line-height: 1.2rem; }
+  .admin-shell .text-base { font-size: 0.8125rem; line-height: 1.15rem; }
+  .admin-shell .text-sm { font-size: 0.75rem; line-height: 1.05rem; }
+  .admin-shell .p-6 { padding: 0.75rem; }
+  .admin-shell .p-5 { padding: 0.625rem; }
+  .admin-shell .p-4 { padding: 0.5rem; }
+  .admin-shell .gap-6 { gap: 0.75rem; }
+  .admin-shell .gap-4 { gap: 0.5rem; }
+  .admin-shell .mb-6 { margin-bottom: 0.75rem; }
+  .admin-shell .mb-4 { margin-bottom: 0.5rem; }
+  .admin-shell svg.w-8,
+  .admin-shell svg.h-8 { width: 1.25rem; height: 1.25rem; }
+  .admin-shell svg.w-6,
+  .admin-shell svg.h-6 { width: 1.05rem; height: 1.05rem; }
+}
