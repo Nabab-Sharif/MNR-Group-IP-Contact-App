@@ -14,7 +14,7 @@ import { usePhoneEntries } from '@/hooks/usePhoneEntries';
 import { useAccessCodes, AccessCode } from '@/hooks/useAccessCodes';
 import { useAllData } from '@/hooks/useAllData';
 import { getDeviceName, getBrowserName, getLocationName, getDateTimeInfo } from '@/lib/deviceInfo';
-import { Shield, Plus, Pencil, Trash2, Building2, Users, Phone, ArrowLeft, ChevronRight, KeyRound, Clock, Search, Wifi, WifiOff, Smartphone, MapPin, Calendar, Circle } from 'lucide-react';
+import { Shield, Plus, Pencil, Trash2, Building2, Users, Phone, ArrowLeft, ChevronRight, KeyRound, Clock, Search, Wifi, WifiOff, Smartphone, MapPin, Calendar, Circle, X } from 'lucide-react';
 import { toast } from 'sonner';
 import { isOnline } from '@/lib/offlineDb';
 import { logEntryEdit, diffEntries } from '@/hooks/useEntryLogs';
@@ -1112,28 +1112,38 @@ const Admin = () => {
         {/* OFFICES TAB - Card design with 5 columns */}
         {tab === 'offices' && (
           <div>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+            <div className="flex flex-col gap-3 mb-6">
               <h3 className="text-lg font-semibold">All Offices/Units</h3>
-              <div className="flex items-center gap-2 w-full sm:w-auto">
-                <div className="relative flex-1 sm:flex-none">
+              
+              {/* Search and Actions - Responsive Layout */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+                <div className="flex-1 min-w-0">
                   <input
                     type="text"
                     placeholder="Search offices..."
                     value={officeSearch}
                     onChange={(e) => setOfficeSearch(e.target.value)}
-                    className="w-full sm:w-56 px-4 py-2 pr-16 border border-border rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    className="w-full px-4 py-2 border border-border rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                   />
-                  {officeSearch && (
-                    <button
-                      type="button"
-                      onClick={() => setOfficeSearch('')}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-xs bg-muted hover:bg-accent px-2 py-1 rounded-md text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      Clear
-                    </button>
-                  )}
                 </div>
-                <Button onClick={openAddOffice} size="sm"><Plus className="w-4 h-4 mr-1" /> Add Office</Button>
+                
+                {/* Action Buttons - Wrap on mobile */}
+                <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap sm:ml-auto">
+                  {officeSearch && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setOfficeSearch('')}
+                      className="text-xs px-3 h-10 sm:h-auto whitespace-nowrap"
+                    >
+                      <X className="w-4 h-4 mr-1" />
+                      Clear
+                    </Button>
+                  )}
+                  <Button onClick={openAddOffice} size="sm" className="whitespace-nowrap">
+                    <Plus className="w-4 h-4 mr-1" /> Add Office
+                  </Button>
+                </div>
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
@@ -1209,19 +1219,19 @@ const Admin = () => {
         {tab === 'departments' && selectedOfficeId && (
           <div>
             <div className="mb-6">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
                 <div>
                   <Button variant="ghost" size="sm" onClick={() => { setTab('offices'); setSelectedOfficeId(''); setDeptSearch(''); setDeptEntryFilter('all'); }} className="mb-2">
                     <ArrowLeft className="w-4 h-4 mr-1" /> Back to Offices
                   </Button>
                   <h3 className="text-lg font-semibold">{selectedOffice?.name} — Departments</h3>
                 </div>
-                <Button onClick={openAddDept} size="sm"><Plus className="w-4 h-4 mr-1" /> Add Department</Button>
+                <Button onClick={openAddDept} size="sm" className="w-full sm:w-auto whitespace-nowrap"><Plus className="w-4 h-4 mr-1" /> Add Department</Button>
               </div>
               
-              {/* Search and Filter Controls */}
-              <div className="flex flex-col sm:flex-row gap-3 flex-wrap items-end">
-                <div className="flex-1 min-w-[200px]">
+              {/* Search and Filter Controls - Responsive */}
+              <div className="flex flex-col gap-3">
+                <div className="flex-1 min-w-0">
                   <input
                     type="text"
                     placeholder="Search departments by name..."
@@ -1230,26 +1240,42 @@ const Admin = () => {
                     className="w-full px-4 py-2 border border-border rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
-                <select
-                  value={deptNameFilter}
-                  onChange={(e) => setDeptNameFilter(e.target.value)}
-                  className="px-4 py-2 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary min-w-[180px]"
-                >
-                  <option value="all">All Department Names</option>
-                  {departments.map(d => (
-                    <option key={d.id} value={d.id}>{d.name}</option>
-                  ))}
-                </select>
-                <select
-                  value={deptEntryFilter}
-                  onChange={(e) => setDeptEntryFilter(e.target.value)}
-                  className="px-4 py-2 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                >
-                  <option value="all">All</option>
-                  <option value="with-entries">With Entries</option>
-                  <option value="empty">Empty</option>
-                </select>
-                <Button variant="ghost" size="sm" onClick={clearDeptFilters} className="min-w-[120px]">Clear</Button>
+                
+                {/* Filter Row - Wraps on mobile */}
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-stretch sm:items-center">
+                  <select
+                    value={deptNameFilter}
+                    onChange={(e) => setDeptNameFilter(e.target.value)}
+                    className="px-4 py-2 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm flex-1 sm:flex-none sm:min-w-[180px]"
+                  >
+                    <option value="all">All Department Names</option>
+                    {departments.map(d => (
+                      <option key={d.id} value={d.id}>{d.name}</option>
+                    ))}
+                  </select>
+                  <select
+                    value={deptEntryFilter}
+                    onChange={(e) => setDeptEntryFilter(e.target.value)}
+                    className="px-4 py-2 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm flex-1 sm:flex-none"
+                  >
+                    <option value="all">All</option>
+                    <option value="with-entries">With Entries</option>
+                    <option value="empty">Empty</option>
+                  </select>
+                  
+                  {/* Clear button - Only show when filters are active */}
+                  {(deptSearch.trim() !== '' || deptNameFilter !== 'all' || deptEntryFilter !== 'all') && (
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={clearDeptFilters} 
+                      className="text-xs whitespace-nowrap bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-700 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/30"
+                    >
+                      <X className="w-4 h-4 mr-1" />
+                      Clear
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -1343,42 +1369,55 @@ const Admin = () => {
         {/* ENTRIES TAB */}
         {tab === 'entries' && selectedDeptId && (
           <div>
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <Button variant="ghost" size="sm" onClick={() => { setTab('departments'); setSelectedDeptId(''); }} className="mb-2">
-                  <ArrowLeft className="w-4 h-4 mr-1" /> Back to Departments
-                </Button>
-                <h3 className="text-lg font-semibold">{selectedOffice?.name} — {selectedDept?.name}</h3>
+            <div className="mb-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
+                <div>
+                  <Button variant="ghost" size="sm" onClick={() => { setTab('departments'); setSelectedDeptId(''); }} className="mb-2">
+                    <ArrowLeft className="w-4 h-4 mr-1" /> Back to Departments
+                  </Button>
+                  <h3 className="text-lg font-semibold">{selectedOffice?.name} — {selectedDept?.name}</h3>
+                </div>
+                <Button onClick={openAddEntry} size="sm" className="w-full sm:w-auto whitespace-nowrap"><Plus className="w-4 h-4 mr-1" /> Add Entry</Button>
               </div>
-              <Button onClick={openAddEntry} size="sm"><Plus className="w-4 h-4 mr-1" /> Add Entry</Button>
-            </div>
 
-            {/* Search and Filter Controls */}
-            <div className="flex flex-col sm:flex-row gap-2 flex-wrap items-end mb-4">
-              <div className="flex-1 min-w-[200px]">
-                <input
-                  type="text"
-                  placeholder="Search by name, extension, phone..."
-                  value={entrySearch}
-                  onChange={(e) => setEntrySearch(e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+              {/* Search and Filter Controls - Responsive */}
+              <div className="flex flex-col gap-3">
+                <div className="flex-1 min-w-0">
+                  <input
+                    type="text"
+                    placeholder="Search by name, extension, phone..."
+                    value={entrySearch}
+                    onChange={(e) => setEntrySearch(e.target.value)}
+                    className="w-full px-4 py-2 text-sm border border-border rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                </div>
+                
+                {/* Filter Row - Wraps on mobile */}
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-stretch sm:items-center">
+                  <select
+                    value={entryStatusFilter}
+                    onChange={(e) => setEntryStatusFilter(e.target.value)}
+                    className="px-4 py-2 text-sm border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary flex-1 sm:flex-none"
+                  >
+                    <option value="all">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                  
+                  {/* Clear button - Only show when filters are active */}
+                  {(entrySearch.trim() !== '' || entryStatusFilter !== 'all') && (
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={() => { setEntrySearch(''); setEntryStatusFilter('all'); }} 
+                      className="text-xs whitespace-nowrap bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-700 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/30"
+                    >
+                      <X className="w-4 h-4 mr-1" />
+                      Clear
+                    </Button>
+                  )}
+                </div>
               </div>
-              <select
-                value={entryStatusFilter}
-                onChange={(e) => setEntryStatusFilter(e.target.value)}
-                className="px-3 py-2 text-sm border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <option value="all">All Status</option>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-              </select>
-              <button 
-                onClick={() => { setEntrySearch(''); setEntryStatusFilter('all'); }} 
-                className="px-3 py-2 text-sm bg-muted hover:bg-accent text-foreground rounded-lg transition-colors"
-              >
-                Clear
-              </button>
             </div>
 
             <div className="bg-card rounded-xl border border-border overflow-hidden">

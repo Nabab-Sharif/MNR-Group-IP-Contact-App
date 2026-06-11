@@ -160,14 +160,16 @@ const OfficeDetail = () => {
             </Button>
           </div>
 
-          <div className="flex items-end justify-end gap-2">
-            <div className="flex items-end gap-2 ml-auto">
-              <div className="w-48 sm:w-64 lg:w-80">
-                <SearchBar value={search} onChange={handleSearchChange} placeholder="Search..." suggestions={suggestions} onSelectSuggestion={handleSelectSuggestion} />
-              </div>
+          <div className="flex flex-col gap-3 sm:gap-2">
+            {/* Search Bar */}
+            <div className="w-full sm:w-auto">
+              <SearchBar value={search} onChange={handleSearchChange} placeholder="Search..." suggestions={suggestions} onSelectSuggestion={handleSelectSuggestion} />
+            </div>
 
-              {!selectedDept && !selectedEntry && (
-                <div className="w-28 sm:w-36">
+            {/* Filter and Clear Controls - Responsive Row */}
+            {!selectedDept && !selectedEntry && (
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="w-full sm:w-36">
                   <Select value={departmentFilter} onValueChange={(value) => {
                     setDepartmentFilter(value);
                     setSelectedEntryId(null);
@@ -183,19 +185,21 @@ const OfficeDetail = () => {
                     </SelectContent>
                   </Select>
                 </div>
-              )}
 
-              {(search.trim() !== '' || departmentFilter !== 'all' || selectedEntryId) && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-8 text-xs rounded-lg bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-700 text-red-600 dark:text-red-400 px-2"
-                  onClick={() => { setSearch(''); setDepartmentFilter('all'); setSelectedEntryId(null); }}
-                >
-                  <X className="w-3.5 h-3.5" />
-                </Button>
-              )}
-            </div>
+                {/* Clear Button - Only show when filters are active */}
+                {(search.trim() !== '' || departmentFilter !== 'all' || selectedEntryId) && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-8 text-xs rounded-lg bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-700 text-red-600 dark:text-red-400 px-2 whitespace-nowrap"
+                    onClick={() => { setSearch(''); setDepartmentFilter('all'); setSelectedEntryId(null); }}
+                  >
+                    <X className="w-3.5 h-3.5 mr-1" />
+                    Clear
+                  </Button>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
