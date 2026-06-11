@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt'],
       manifest: {
-        name: 'MNR Group IP & Contact Directory',
+        name: 'IP & Contact',
         short_name: 'IP & Contacts',
         description: 'MNR Group IP & Contact Directory - Search and browse extension numbers',
         theme_color: '#1b5a96',
