@@ -1,0 +1,1 @@
+ALTER TABLE public.phone_entries ADD COLUMN IF NOT EXISTS shift_from date, ADD COLUMN IF NOT EXISTS shift_to date;

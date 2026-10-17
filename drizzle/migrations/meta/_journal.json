@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1788333876803,
+      "tag": "0000_add_new_flag_date_ranges",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1788754512752,
+      "tag": "0001_add_office_locations_and_emergency_dept",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1788838372649,
+      "tag": "0002_add_shift_to_phone_entries",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791081938520,
+      "tag": "0003_add_shift_dates",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+ALTER TABLE public.phone_entries ADD COLUMN IF NOT EXISTS shift text;
