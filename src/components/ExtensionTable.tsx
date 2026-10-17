@@ -258,7 +258,7 @@ const ExtensionTable = ({ entries, title, departments = [], hideHeader = false, 
                           {entry.email && (
                             <div className="flex flex-col gap-1.5 group/email bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg px-2 py-1 border border-blue-100 dark:border-blue-800">
                               <div className="flex items-center justify-center">
-                                <ContactQrBadge name={entry.name} kind="email" value={entry.email} size={120} className="!p-1" />
+                                <ContactQrBadge name={entry.name} kind="email" value={entry.email} size={120} className="!p-1" isOpen={openQrByEntry[entry.id] === 'email'} onToggle={() => toggleQr(entry.id, 'email')} />
                               </div>
                               <div className="flex items-center gap-1.5 min-w-0">
                                 <div className="flex items-center gap-1 flex-shrink-0">
