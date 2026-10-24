@@ -642,11 +642,10 @@ window.onload=function(){
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4">
-                {finalOffices.map((office, index) => (
+                {finalOffices.map((office) => (
                   <OfficeCard
                     key={office.id}
                     office={office}
-                    animationIndex={index}
                     onClick={() => navigateToOffice(office.id, office.previewEntries)}
                     onEntryClick={(entry) => navigateToEntry(office.id, office.previewEntries, entry)}
                     showAll={selectedDeptName !== 'all' || showNewOnly || showNewPhoneOnly || showEmergencyOnly}
@@ -665,11 +664,10 @@ window.onload=function(){
               Showing <span className="font-semibold text-slate-900 dark:text-slate-50">{finalOffices.length}</span> office
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4">
-              {finalOffices.map((office, index) => (
+              {finalOffices.map((office) => (
                 <OfficeCard
                   key={office.id}
                   office={office}
-                  animationIndex={index}
                   onClick={() => navigateToOffice(office.id, office.previewEntries)}
                   onEntryClick={(entry) => navigateToEntry(office.id, office.previewEntries, entry)}
                   showAll={selectedDeptName !== 'all' || showNewOnly || showNewPhoneOnly || showEmergencyOnly || selectedOffices.length === 1}
